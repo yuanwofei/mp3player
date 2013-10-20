@@ -1,4 +1,4 @@
-package yuan.model;
+package yuan.factory.model;
 
 public class SearchHistoryInfo {
 	private int _id = 0;

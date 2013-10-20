@@ -3,7 +3,7 @@ package yuan.xml;
 import java.io.InputStream;
 import java.util.List;
 
-import yuan.model.Mp3Info;
+import yuan.factory.model.Mp3Info;
 
 /**解析的抽象类
  * @param <E>*/

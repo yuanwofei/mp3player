@@ -5,13 +5,12 @@ import java.util.List;
 
 import yuan.constant.AppConstant;
 import yuan.constant.MusicPlayer;
-import yuan.constant.PlayModeConstant;
 import yuan.factory.Mp3InfoSearchFactory;
 import yuan.factory.OnlineFactory;
+import yuan.factory.model.CopyMp3Infos;
+import yuan.factory.model.Mp3Info;
 import yuan.image.LoadImageThread;
 import yuan.lyric.LyricLoadThread;
-import yuan.model.CopyMp3Infos;
-import yuan.model.Mp3Info;
 import yuan.mp3player.MainActivity;
 import yuan.mp3player.R;
 import yuan.mp3player.broadcast.LoadImageBroadcastReceiver;
@@ -34,13 +33,13 @@ public class PlayerService extends Service{
 	
 	private boolean isPlaying = false;
 	private boolean isPause = false;
-	private int position = 0;
+	private int index = 0;
 	private int msg = 0;
 	
 	private PlayTime playTime = null;
 	private LoadImageThread loadImage = null;	
 	private LyricLoadThread lyricLoadThread = null;	
-	private Mp3Info mp3Info = null;		
+	private Mp3Info mp3Info = null;
 	
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -68,7 +67,7 @@ public class PlayerService extends Service{
 	/**获取从MainActivity传过来的信息*/
 	private void getExtra(Intent intent) {
 		mp3Info = (Mp3Info) intent.getSerializableExtra("mp3Info");
-		position = intent.getIntExtra("position", 0);//得到所选MP3在当前列表中的位置	
+		index = intent.getIntExtra("index", 0);//得到所选MP3在当前列表中的位置	
 		msg = intent.getIntExtra("MSG", 0);
 	}
 	
@@ -118,8 +117,8 @@ public class PlayerService extends Service{
 	
 	private void nextSong() {
 		List<Mp3Info> mp3Infos = CopyMp3Infos.getMP3INFOS();
-		position = PlayModeConstant.playMode.getAfterPosition(position, mp3Infos);
-		mp3Info = mp3Infos.get(position);
+		index = MainActivity.getPlayMode().nextSongIndex(index, mp3Infos.size());
+		mp3Info = mp3Infos.get(index);
 		play(mp3Info);
 	}
 	

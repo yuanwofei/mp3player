@@ -3,7 +3,7 @@ package yuan.mp3player.service;
 import yuan.download.HttpDownloader;
 import yuan.factory.Mp3InfoSearchFactory;
 import yuan.factory.OnlineFactory;
-import yuan.model.Mp3Info;
+import yuan.factory.model.Mp3Info;
 import yuan.notification.DownloadNotification;
 import yuan.utils.FileUtils;
 import android.app.Service;

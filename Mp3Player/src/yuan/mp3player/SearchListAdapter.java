@@ -2,7 +2,7 @@ package yuan.mp3player;
 
 import java.util.List;
 
-import yuan.model.Mp3Info;
+import yuan.factory.model.Mp3Info;
 import yuan.mp3player.service.DownloadService;
 import android.content.Context;
 import android.content.Intent;

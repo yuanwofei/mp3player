@@ -2,9 +2,9 @@ package yuan.factory;
 
 import java.util.List;
 
+import yuan.factory.model.Mp3Info;
 import yuan.http.AbstractHttpApi;
 import yuan.http.CommonHttpApi;
-import yuan.model.Mp3Info;
 import yuan.xml.AbstractParse;
 import yuan.xml.ComonXmlParse;
 

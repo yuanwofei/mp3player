@@ -13,7 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import yuan.model.Mp3Info;
+import yuan.factory.model.Mp3Info;
 
 public class ComonXmlParse extends AbstractParse {
 

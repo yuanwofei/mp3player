@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
 
-import yuan.model.Mp3Info;
+import yuan.factory.model.Mp3Info;
 
 public class Mp3ID3v1 {
 

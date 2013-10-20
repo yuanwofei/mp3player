@@ -3,7 +3,7 @@ package yuan.mp3player;
 import java.util.List;
 
 import yuan.database.SearchHistoryDBManager;
-import yuan.model.SearchHistoryInfo;
+import yuan.factory.model.SearchHistoryInfo;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

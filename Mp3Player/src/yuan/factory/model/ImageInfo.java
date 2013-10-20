@@ -1,4 +1,4 @@
-package yuan.model;
+package yuan.factory.model;
 
 import java.io.Serializable;
 

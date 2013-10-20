@@ -10,7 +10,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import yuan.model.Mp3Info;
+import yuan.factory.model.Mp3Info;
 import yuan.utils.FileUtils;
 
 public class Mp3InfoXmlParse extends AbstractParse {

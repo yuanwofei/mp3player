@@ -3,7 +3,7 @@ package yuan.database;
 import java.util.ArrayList;
 import java.util.List;
 
-import yuan.model.SearchHistoryInfo;
+import yuan.factory.model.SearchHistoryInfo;
 
 import android.content.ContentValues;
 import android.content.Context;

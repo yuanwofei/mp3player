@@ -7,7 +7,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import yuan.model.Mp3Info;
+import yuan.factory.model.Mp3Info;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;

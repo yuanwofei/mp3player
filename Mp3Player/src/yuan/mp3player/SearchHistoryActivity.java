@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 import yuan.constant.AppConstant;
 import yuan.database.SearchHistoryDBManager;
-import yuan.model.SearchHistoryInfo;
+import yuan.factory.model.SearchHistoryInfo;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.AsyncTask;

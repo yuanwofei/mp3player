@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.util.List;
 import yuan.constant.AppConstant;
 import yuan.download.HttpDownloader;
-import yuan.model.Mp3Info;
+import yuan.factory.model.Mp3Info;
 import yuan.utils.Network;
 import android.content.Context;
 import android.content.Intent;

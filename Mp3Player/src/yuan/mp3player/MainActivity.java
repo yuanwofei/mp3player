@@ -1,35 +1,28 @@
 package yuan.mp3player;
 
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import yuan.constant.AppConstant;
-import yuan.constant.PlayModeConstant;
+import yuan.factory.IPlayModeFactory;
+import yuan.factory.RandomPlayModeFactory;
+import yuan.factory.SequencePlayModeFactory;
+import yuan.factory.SinglePlayModeFactory;
+import yuan.factory.model.AbstractPlayMode;
+import yuan.factory.model.CopyMp3Infos;
+import yuan.factory.model.Mp3Info;
 import yuan.lyric.LyricTextView;
-import yuan.model.CopyMp3Infos;
-import yuan.model.Mp3Info;
-import yuan.model.RandomPlayMode;
-import yuan.model.SequencePlayMode;
-import yuan.model.SingleMode;
 import yuan.mp3player.service.PlayerService;
 import yuan.notification.TrayNotification;
 import yuan.seekbar.SeekBarListener;
 import yuan.utils.FileUtils;
 import android.app.TabActivity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -44,7 +37,7 @@ public class MainActivity extends TabActivity {
 
 	private List<Mp3Info> mp3Infos = null;
 	private Mp3Info mp3Info = null;
-	public static int position = 0;
+	public static int index = 0;
 	private int modeValue = AppConstant.PlayMode.SEQUENCE_MODE;
 
 	public ViewFlipper appFlipper = null;
@@ -59,47 +52,10 @@ public class MainActivity extends TabActivity {
 	private static LyricTextView lyricView = null;
 	private boolean isMainUI = true;
 	
-	
-	
-	
-	
-	
-	
-	//Handler mHandler = new Handler(Looper.myLooper());
-	
-	Timer timer = new Timer(); 
-	TimerTask task = new TimerTask() {	
-		@Override
-		public void run() { //单独线程
-			
-		}
-	};
-	
-		
-	
-	
-	
-	
-	
+	private static IPlayModeFactory playModeFactory;
+
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		timer.schedule(task, 100, 100l);
-		new Timer().schedule(new TimerTask() {	
-			@Override
-			public void run() {
-							
-			}
-		}, 1000); 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		// TODO Auto-generated method stub
+	public void onCreate(Bundle savedInstanceState) {			
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
@@ -159,19 +115,25 @@ public class MainActivity extends TabActivity {
 	private void StartService(int id) {
 		mp3Infos = CopyMp3Infos.getMP3INFOS();
 		if (id == R.id.play) {
-			mp3Info = mp3Infos.get(position);
+			mp3Info = mp3Infos.get(index);
 			setIntent(AppConstant.PlayerMsg.PLAY_MSG);
 		} else if (id == R.id.prev) {
-			position = PlayModeConstant.playMode.getBeforePosition(position,
-					mp3Infos);
-			mp3Info = mp3Infos.get(position);
+			index = getPlayMode().preSongIndex(index, mp3Infos.size());
+			mp3Info = mp3Infos.get(index);
 			setIntent(AppConstant.PlayerMsg.BEFORE_MSG);
 		} else if (id == R.id.next) {
-			position = PlayModeConstant.playMode.getAfterPosition(position,
-					mp3Infos);
-			mp3Info = mp3Infos.get(position);
+			index = getPlayMode().nextSongIndex(index, mp3Infos.size());
+			mp3Info = mp3Infos.get(index);
 			setIntent(AppConstant.PlayerMsg.AFTER_MSG);
 		}
+	}
+
+	public static AbstractPlayMode getPlayMode() {
+		return playModeFactory.createPlayMode();
+	}
+	
+	public void setPlayModeFactory(IPlayModeFactory playModeFactory) {
+		MainActivity.playModeFactory = playModeFactory;
 	}
 
 	/** 设置Intent */
@@ -180,12 +142,14 @@ public class MainActivity extends TabActivity {
 		intent.setClass(this, PlayerService.class);
 		intent.putExtra("MSG", flag);
 		intent.putExtra("mp3Info", mp3Info);
-		intent.putExtra("position", position);
+		intent.putExtra("index", index);
 		this.startService(intent);
 	}
 
 	/** 初始化各种组件 */
 	private void initComponent() {
+		setPlayModeFactory(new SequencePlayModeFactory());
+		
 		appFlipper = (ViewFlipper) findViewById(R.id.app_viewflipper);
 		//appFlipper.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom));
 		miniPlayControlBar = (RelativeLayout) findViewById(R.id.mini_play_control);
@@ -246,7 +210,7 @@ public class MainActivity extends TabActivity {
 				AppConstant.PlayComponent.playMode
 						.setImageResource(R.drawable.random_mode);
 				modeValue = AppConstant.PlayMode.RANDOM_MODE;
-				PlayModeConstant.playMode = new RandomPlayMode();
+				setPlayModeFactory(new RandomPlayModeFactory());
 				Toast.makeText(MainActivity.this, R.string.random_mode, Toast.LENGTH_SHORT)
 						.show();
 				break;
@@ -254,7 +218,7 @@ public class MainActivity extends TabActivity {
 				AppConstant.PlayComponent.playMode
 						.setImageResource(R.drawable.single_mode);
 				modeValue = AppConstant.PlayMode.SINGLE_MODE;
-				PlayModeConstant.playMode = new SingleMode();
+				setPlayModeFactory(new SinglePlayModeFactory());
 				Toast.makeText(MainActivity.this, R.string.single_mode, Toast.LENGTH_SHORT)
 						.show();
 				break;
@@ -262,7 +226,7 @@ public class MainActivity extends TabActivity {
 				AppConstant.PlayComponent.playMode
 						.setImageResource(R.drawable.sequence_mode);
 				modeValue = AppConstant.PlayMode.SEQUENCE_MODE;
-				PlayModeConstant.playMode = new SequencePlayMode();
+				setPlayModeFactory(new SequencePlayModeFactory());
 				Toast.makeText(MainActivity.this, R.string.sequence_mode, Toast.LENGTH_SHORT)
 						.show();
 				break;
@@ -319,33 +283,5 @@ public class MainActivity extends TabActivity {
 
 		finish();
 		System.exit(0);
-	}
-
-	/**
-	 * onConfigurationChanged the package:android.content.res.Configuration.
-	 * 
-	 * @param newConfig
-	 *            , The new device configuration.
-	 *            当设备配置信息有改动（比如屏幕方向的改变，实体键盘的推开或合上等）时，
-	 *            并且如果此时有activity正在运行，系统会调用这个函数。
-	 *            注意：onConfigurationChanged只会监测应用程序在AnroidMainifest.xml中通过
-	 *            android:configChanges="xxxx"指定的配置类型的改动；
-	 *            而对于其他配置的更改，则系统会onDestroy()当前Activity，然后重启一个新的Activity实例。
-	 */
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-		// 检测屏幕的方向：纵向或横向
-		if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-			// 当前为横屏， 在此处添加额外的处理代码
-		} else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-			// 当前为竖屏， 在此处添加额外的处理代码
-		}
-		// 检测实体键盘的状态：推出或者合上
-		if (newConfig.hardKeyboardHidden == Configuration.HARDKEYBOARDHIDDEN_NO) {
-			// 实体键盘处于推出状态，在此处添加额外的处理代码
-		} else if (newConfig.hardKeyboardHidden == Configuration.HARDKEYBOARDHIDDEN_YES) {
-			// 实体键盘处于合上状态，在此处添加额外的处理代码
-		}
 	}
 }

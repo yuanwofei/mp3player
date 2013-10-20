@@ -4,8 +4,8 @@ import java.util.List;
 
 import yuan.constant.AppConstant;
 import yuan.constant.MusicPlayer;
-import yuan.model.CopyMp3Infos;
-import yuan.model.Mp3Info;
+import yuan.factory.model.CopyMp3Infos;
+import yuan.factory.model.Mp3Info;
 import yuan.mp3player.service.PlayerService;
 import yuan.utils.FileUtils;
 import android.content.Context;
@@ -48,7 +48,7 @@ public class LocalMp3List{
 			if(mp3Infos != null) {		
 				CopyMp3Infos.setMP3INFOS(mp3Infos);
 				MusicPlayer.isFirstPlaying =true;
-				MainActivity.position = position;
+				MainActivity.index = position;
 				Mp3Info mp3Info = mp3Infos.get(position);
 				Intent intent = new Intent();				
 				intent.setClass(context, PlayerService.class);

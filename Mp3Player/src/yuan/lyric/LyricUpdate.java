@@ -4,7 +4,7 @@ import java.util.Vector;
 
 import yuan.constant.AppConstant;
 import yuan.constant.MusicPlayer;
-import yuan.model.Mp3Info;
+import yuan.factory.model.Mp3Info;
 import yuan.mp3player.MainActivity;
 import android.content.Context;
 import android.content.Intent;

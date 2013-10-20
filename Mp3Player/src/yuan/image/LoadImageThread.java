@@ -19,8 +19,8 @@ import org.json.JSONObject;
 
 import yuan.constant.AppConstant;
 import yuan.download.HttpDownloader;
-import yuan.model.ImageInfo;
-import yuan.model.Mp3Info;
+import yuan.factory.model.ImageInfo;
+import yuan.factory.model.Mp3Info;
 import yuan.utils.FileUtils;
 import yuan.utils.Network;
 import android.content.Context;

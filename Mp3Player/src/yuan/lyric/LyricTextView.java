@@ -1,8 +1,8 @@
 package yuan.lyric;
 import java.util.List;
 import yuan.constant.MusicPlayer;
+import yuan.factory.model.Mp3Info;
 import yuan.image.LoadImageThread;
-import yuan.model.Mp3Info;
 import yuan.mp3player.broadcast.LoadImageBroadcastReceiver;
 import android.content.Context;
 import android.graphics.Canvas;
