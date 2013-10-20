@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/local_home_viewflipper"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/root_bg">
+    <GridView         
+        android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:id="@+id/local_home_gridview"
+    	android:numColumns="3"
+    	android:verticalSpacing="10dip"  	    
+	    android:listSelector="@drawable/home_gridview_item"	         
+	    android:stretchMode="columnWidth"  
+	    android:gravity="center"
+    	>  	        
+    </GridView>   	
+</ViewFlipper><!-- From: file:/G:/android/workspace/Mp3Player/res/layout/local_home.xml -->

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<shape xmlns:android="http://schemas.android.com/apk/res/android"> 
+    <solid android:color="#ffffff" /> 
+    <corners android:radius="3dip"/>
+    <stroke  
+        android:width="1dip"  
+        android:color="#a7a8a8" /> 
+</shape>
+<!-- From: file:/G:/android/workspace/Mp3Player/res/drawable/bg_history_footer_normal.xml -->

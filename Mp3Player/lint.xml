@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="DrawAllocation">
+        <ignore path="src\yuan\lyric\DesktopLyricView.java" />
+        <ignore path="src\yuan\lyric\LyricTextView.java" />
+        <ignore path="src\yuan\mp3player\DesktopLRCView.java" />
+    </issue>
+    <issue id="HandlerLeak">
+        <ignore path="src\yuan\image\SingerImage.java" />
+        <ignore path="src\yuan\mp3player\SearchActivity.java" />
+        <ignore path="src\yuan\mp3player\broadcast\LoadImageBroadcastReceiver.java" />
+        <ignore path="src\yuan\mp3player\broadcast\LoadLyricBroadcastReceiver.java" />
+        <ignore path="src\yuan\mp3player\service\PlayerService.java" />
+    </issue>
+    <issue id="NewApi">
+        <ignore path="src\yuan\lyric\QianQianJingTingLyricUtil.java" />
+        <ignore path="src\yuan\notification\TrayNotification.java" />
+    </issue>
+    <issue id="ShowToast">
+        <ignore path="src\yuan\lyric\LyricLoadThread.java" />
+        <ignore path="src\yuan\mp3player\App.java" />
+        <ignore path="src\yuan\mp3player\Application.java" />
+        <ignore path="src\yuan\mp3player\Player.java" />
+        <ignore path="src\yuan\mp3player\PlayerActivity.java" />
+        <ignore path="src\yuan\mp3player\SearchActivity.java" />
+        <ignore path="src\yuan\mp3player\service\DownloadBaiduService.java" />
+        <ignore path="src\yuan\mp3player\service\PlayerService.java" />
+    </issue>
+    <issue id="ViewConstructor">
+        <ignore path="src\yuan\lyric\LyricTextView.java" />
+    </issue>
+</lint>

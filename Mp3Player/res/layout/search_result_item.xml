@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/search_result_item"
+    android:layout_width="match_parent"
+    android:layout_height="60dip"
+    android:gravity="center_vertical"
+    android:background="@drawable/search_result_item"
+    android:orientation="vertical">
+   <RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="60dip"
+	    android:gravity="center_vertical">
+	    <RelativeLayout 
+	        android:layout_width="match_parent"
+	    	android:layout_height="wrap_content"
+	    	android:gravity="center_vertical"
+	    	android:layout_centerVertical="true">
+		    <TextView android:id="@+id/mp3_name"
+		        android:layout_height="wrap_content"
+		        android:layout_width="wrap_content"
+		        android:layout_marginLeft="10dip"
+				android:singleLine="true"
+		        android:textColor="#07a6da"     
+		        android:textSize="11pt"/>
+		    <TextView android:id="@+id/album_singer_name"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignLeft="@id/mp3_name"
+		        android:singleLine="true"		       
+		        android:layout_below="@id/mp3_name"
+		        android:textSize="8pt"/>
+	    </RelativeLayout>
+
+	    <ImageButton
+	        android:id="@+id/search_list_menu_btn"
+	        android:background="@color/search_result_item"
+	        android:layout_width="60dip"
+	        android:layout_height="60dip"    
+	        android:layout_alignParentRight="true"
+	        android:src="@drawable/search_list_menu_down_btn"     
+	     />    
+	</RelativeLayout>
+</LinearLayout>

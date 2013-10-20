@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">泡泡音乐</string>
+	<string name="begin_button">开始按钮</string>
+	<string name="before_button">前一首</string>
+	<string name="after_button">后一首</string>
+	<string name="more_button">更多按钮</string>
+	<string name="return_back">返回按钮</string>
+	<string name="search_button"></string>
+	<string name="hint_text"> 歌曲、歌手、专辑</string>
+	<string name="search_more_text">更多</string>
+	<string name="clear_history_text">清除历史记录</string>
+	
+	<string name="pre_listen_text">试听</string>	
+	<string name="down_mp3_text">下载</string>
+	<string name="collection_text">收藏</string>
+	
+	<string name="play_mode">播放模式</string>
+	<string name="sequence_mode">循环播放</string>
+	<string name="random_mode">随机播放</string>
+	<string name="single_mode">单曲循环</string>
+	
+	<string name="increase_time">00:00</string>
+	<string name="mp3_time">00:00</string>
+	<string name="exit">退出</string>
+	
+	<string name="home_allmusic">全部歌曲</string>
+	<string name="home_singer">歌手</string>
+	<string name="home_album">专辑</string>
+	<string name="home_folder">文件夹</string>
+	<string name="home_favorite">我的最爱</string>
+	<string name="home_currentadd">最近添加</string>
+	<string name="home_newlist">新建列表</string>
+	
+	<string name="home_allmusic_state">0首歌曲</string>
+	<string name="home_singer_state">0首歌手</string>
+	<string name="home_album_state">0张专辑</string>
+	<string name="home_folder_state">0个文件夹</string>
+	<string name="home_favorite_state">0首歌曲</string>
+	<string name="home_currentadd_state">0首歌曲</string>
+	<string name="home_newlist_state"></string>	
+</resources>

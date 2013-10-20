@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="main" >
+        <source path="G:\android\workspace\Mp3Player\res" >
+            <file
+                name="set_animation"
+                path="G:\android\workspace\Mp3Player\res\anim\set_animation.xml"
+                qualifiers=""
+                type="anim" />
+            <file
+                name="slide_in_right"
+                path="G:\android\workspace\Mp3Player\res\anim\slide_in_right.xml"
+                qualifiers=""
+                type="anim" />
+            <file
+                name="zoomin"
+                path="G:\android\workspace\Mp3Player\res\anim\zoomin.xml"
+                qualifiers=""
+                type="anim" />
+            <file
+                name="zoomout"
+                path="G:\android\workspace\Mp3Player\res\anim\zoomout.xml"
+                qualifiers=""
+                type="anim" />
+            <file
+                name="set"
+                path="G:\android\workspace\Mp3Player\res\animator\set.xml"
+                qualifiers=""
+                type="animator" />
+            <file
+                name="bg_edittext"
+                path="G:\android\workspace\Mp3Player\res\drawable\bg_edittext.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="bg_edittext_focused"
+                path="G:\android\workspace\Mp3Player\res\drawable\bg_edittext_focused.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="bg_edittext_normal"
+                path="G:\android\workspace\Mp3Player\res\drawable\bg_edittext_normal.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="bg_history_footer_focused"
+                path="G:\android\workspace\Mp3Player\res\drawable\bg_history_footer_focused.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="bg_history_footer_normal"
+                path="G:\android\workspace\Mp3Player\res\drawable\bg_history_footer_normal.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="button_search_cancel"
+                path="G:\android\workspace\Mp3Player\res\drawable\button_search_cancel.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="clear_btn"
+                path="G:\android\workspace\Mp3Player\res\drawable\clear_btn.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="home_gridview_item"
+                path="G:\android\workspace\Mp3Player\res\drawable\home_gridview_item.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="list_item_selected"
+                path="G:\android\workspace\Mp3Player\res\drawable\list_item_selected.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="load_more_btn"
+                path="G:\android\workspace\Mp3Player\res\drawable\load_more_btn.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="local_list_item_menu"
+                path="G:\android\workspace\Mp3Player\res\drawable\local_list_item_menu.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="mini_play_control_view_bg"
+                path="G:\android\workspace\Mp3Player\res\drawable\mini_play_control_view_bg.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="next"
+                path="G:\android\workspace\Mp3Player\res\drawable\next.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="pause"
+                path="G:\android\workspace\Mp3Player\res\drawable\pause.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="play"
+                path="G:\android\workspace\Mp3Player\res\drawable\play.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="prev"
+                path="G:\android\workspace\Mp3Player\res\drawable\prev.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="return_back_icon"
+                path="G:\android\workspace\Mp3Player\res\drawable\return_back_icon.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="search_btn_bg"
+                path="G:\android\workspace\Mp3Player\res\drawable\search_btn_bg.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="search_history_record_flag"
+                path="G:\android\workspace\Mp3Player\res\drawable\search_history_record_flag.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="search_list_menu_down_btn"
+                path="G:\android\workspace\Mp3Player\res\drawable\search_list_menu_down_btn.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="search_result_item"
+                path="G:\android\workspace\Mp3Player\res\drawable\search_result_item.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="search_result_item_operate_item"
+                path="G:\android\workspace\Mp3Player\res\drawable\search_result_item_operate_item.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="search_speech_btn"
+                path="G:\android\workspace\Mp3Player\res\drawable\search_speech_btn.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="tab_item_color"
+                path="G:\android\workspace\Mp3Player\res\drawable\tab_item_color.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="button_search_cancel_normal"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\button_search_cancel_normal.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="button_search_cancel_pressed"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\button_search_cancel_pressed.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="button_search_speechsound_normal"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\button_search_speechsound_normal.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="button_search_speechsound_press"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\button_search_speechsound_press.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="button_triangle_down_normal"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\button_triangle_down_normal.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="button_triangle_down_pressed"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\button_triangle_down_pressed.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="division_line"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\division_line.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="history_record_flag_normal"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\history_record_flag_normal.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="history_record_flag_pressed"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\history_record_flag_pressed.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="home_album"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\home_album.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="home_allmusic"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\home_allmusic.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="home_currentadd"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\home_currentadd.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="home_favorite"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\home_favorite.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="home_folder"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\home_folder.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="home_newlist"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\home_newlist.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="home_singer"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\home_singer.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\ic_launcher.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="list_item_menu_normal"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\list_item_menu_normal.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="list_item_menu_pressed"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\list_item_menu_pressed.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="mini_default_singerimage"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\mini_default_singerimage.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="more"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\more.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="next_normal"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\next_normal.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="next_pressed"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\next_pressed.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="pause_normal"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\pause_normal.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="pause_pressed"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\pause_pressed.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="play_normal"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\play_normal.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="play_pressed"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\play_pressed.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="prev_normal"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\prev_normal.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="prev_pressed"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\prev_pressed.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="random_mode"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\random_mode.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="return_normal"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\return_normal.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="return_pressed"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\return_pressed.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="root_bg"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\root_bg.jpg"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="search_hit"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\search_hit.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="search_normal"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\search_normal.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="search_pressed"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\search_pressed.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="sequence_mode"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\sequence_mode.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="single_mode"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\single_mode.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="slider_normal"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\slider_normal.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="splash"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\splash.jpg"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="tab_itemcolor_normal"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\tab_itemcolor_normal.jpg"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="tab_itemcolor_pressed"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\tab_itemcolor_pressed.jpg"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="vertical_separate_line"
+                path="G:\android\workspace\Mp3Player\res\drawable-hdpi\vertical_separate_line.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="G:\android\workspace\Mp3Player\res\drawable-ldpi\ic_launcher.png"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="information_icon"
+                path="G:\android\workspace\Mp3Player\res\drawable-ldpi\information_icon.png"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="G:\android\workspace\Mp3Player\res\drawable-mdpi\ic_launcher.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="G:\android\workspace\Mp3Player\res\drawable-xhdpi\ic_launcher.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="G:\android\workspace\Mp3Player\res\drawable-xxhdpi\ic_launcher.png"
+                qualifiers="xxhdpi"
+                type="drawable" />
+            <file
+                name="local_home"
+                path="G:\android\workspace\Mp3Player\res\layout\local_home.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="local_home_grid_item"
+                path="G:\android\workspace\Mp3Player\res\layout\local_home_grid_item.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="local_home_song_list"
+                path="G:\android\workspace\Mp3Player\res\layout\local_home_song_list.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="local_home_song_list_item"
+                path="G:\android\workspace\Mp3Player\res\layout\local_home_song_list_item.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="main"
+                path="G:\android\workspace\Mp3Player\res\layout\main.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="play"
+                path="G:\android\workspace\Mp3Player\res\layout\play.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="play_mini_control_bar"
+                path="G:\android\workspace\Mp3Player\res\layout\play_mini_control_bar.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="play_seekbar_style"
+                path="G:\android\workspace\Mp3Player\res\layout\play_seekbar_style.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="play_seekbar_thumb"
+                path="G:\android\workspace\Mp3Player\res\layout\play_seekbar_thumb.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="search"
+                path="G:\android\workspace\Mp3Player\res\layout\search.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="search_history"
+                path="G:\android\workspace\Mp3Player\res\layout\search_history.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="search_history_clear_item"
+                path="G:\android\workspace\Mp3Player\res\layout\search_history_clear_item.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="search_history_item"
+                path="G:\android\workspace\Mp3Player\res\layout\search_history_item.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="search_keyword_autocomplete_item"
+                path="G:\android\workspace\Mp3Player\res\layout\search_keyword_autocomplete_item.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="search_more_item"
+                path="G:\android\workspace\Mp3Player\res\layout\search_more_item.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="search_result_info"
+                path="G:\android\workspace\Mp3Player\res\layout\search_result_info.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="search_result_item"
+                path="G:\android\workspace\Mp3Player\res\layout\search_result_item.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="search_result_item_operate"
+                path="G:\android\workspace\Mp3Player\res\layout\search_result_item_operate.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="splash"
+                path="G:\android\workspace\Mp3Player\res\layout\splash.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="tab"
+                path="G:\android\workspace\Mp3Player\res\layout\tab.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="tab_item"
+                path="G:\android\workspace\Mp3Player\res\layout\tab_item.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                path="G:\android\workspace\Mp3Player\res\values\color.xml"
+                qualifiers="" >
+                <color name="gray_white" >#cfcfcf
+                </color>
+                <color name="mini_playview_bg_normal" >#5193bd
+                </color>
+                <color name="blue" >#7075bbdc
+                </color>
+                <color name="clear_history_text" >#000000
+                </color>
+                <color name="search_history_view_background" >#e7e7e7
+                </color>
+                <color name="white" >#ffffff
+                </color>
+                <color name="black" >#000000
+                </color>
+                <color name="mini_playview_bg_pressed" >#6cb3df
+                </color>
+                <color name="transparent" >#00000000
+                </color>
+                <color name="search_result_item" >#ebebeb
+                </color>
+                <color name="search_result_state" >#ffffff
+                </color>
+            </file>
+            <file
+                path="G:\android\workspace\Mp3Player\res\values\strings.xml"
+                qualifiers="" >
+                <string name="pre_listen_text" >试听
+                </string>
+                <string name="home_favorite" >我的最爱
+                </string>
+                <string name="home_newlist_state" ></string>
+                <string name="collection_text" >收藏
+                </string>
+                <string name="search_button" ></string>
+                <string name="down_mp3_text" >下载
+                </string>
+                <string name="sequence_mode" >循环播放
+                </string>
+                <string name="home_singer_state" >0首歌手
+                </string>
+                <string name="return_back" >返回按钮
+                </string>
+                <string name="increase_time" >00:00
+                </string>
+                <string name="mp3_time" >00:00
+                </string>
+                <string name="exit" >退出
+                </string>
+                <string name="clear_history_text" >清除历史记录
+                </string>
+                <string name="hint_text" > 歌曲、歌手、专辑
+                </string>
+                <string name="more_button" >更多按钮
+                </string>
+                <string name="home_allmusic" >全部歌曲
+                </string>
+                <string name="home_album" >专辑
+                </string>
+                <string name="play_mode" >播放模式
+                </string>
+                <string name="single_mode" >单曲循环
+                </string>
+                <string name="home_allmusic_state" >0首歌曲
+                </string>
+                <string name="home_folder" >文件夹
+                </string>
+                <string name="home_album_state" >0张专辑
+                </string>
+                <string name="home_newlist" >新建列表
+                </string>
+                <string name="home_currentadd_state" >0首歌曲
+                </string>
+                <string name="begin_button" >开始按钮
+                </string>
+                <string name="search_more_text" >更多
+                </string>
+                <string name="home_favorite_state" >0首歌曲
+                </string>
+                <string name="app_name" >泡泡音乐
+                </string>
+                <string name="home_folder_state" >0个文件夹
+                </string>
+                <string name="before_button" >前一首
+                </string>
+                <string name="home_singer" >歌手
+                </string>
+                <string name="home_currentadd" >最近添加
+                </string>
+                <string name="random_mode" >随机播放
+                </string>
+                <string name="after_button" >后一首
+                </string>
+            </file>
+            <file
+                path="G:\android\workspace\Mp3Player\res\values\styles.xml"
+                qualifiers="" >
+
+                <style
+                    name="no_title"
+                    parent="android:Theme.Light" >
+                    <item name="android:windowNoTitle">
+true
+                    </item>
+                </style>
+
+                <style
+                    name="AppTheme"
+                    parent="android:Theme.Light" />
+            </file>
+            <file
+                name="actionkey"
+                path="G:\android\workspace\Mp3Player\res\xml\actionkey.xml"
+                qualifiers=""
+                type="xml" />
+            <file
+                name="checkbox"
+                path="G:\android\workspace\Mp3Player\res\xml\checkbox.xml"
+                qualifiers=""
+                type="xml" />
+            <file
+                name="provider"
+                path="G:\android\workspace\Mp3Player\res\xml\provider.xml"
+                qualifiers=""
+                type="xml" />
+            <file
+                name="screen"
+                path="G:\android\workspace\Mp3Player\res\xml\screen.xml"
+                qualifiers=""
+                type="xml" />
+            <file
+                name="searchable"
+                path="G:\android\workspace\Mp3Player\res\xml\searchable.xml"
+                qualifiers=""
+                type="xml" />
+        </source>
+        <source path="G:\android\workspace\Mp3Player\build\res\rs\debug" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="G:\android\workspace\Mp3Player\build-types\debug\res" />
+    </dataSet>
+
+</merger>

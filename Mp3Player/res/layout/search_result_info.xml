@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+	android:background="@color/search_result_state">
+    <TextView android:id="@+id/search_result_total" 
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:paddingLeft="7dip"
+    	android:paddingRight="7dip"
+        android:layout_marginBottom="3dip"
+        android:textSize="11pt"/>
+    
+    <View android:layout_width="fill_parent"
+    	  android:layout_height="2dip"
+    	  android:paddingLeft="7dip"
+    	  android:paddingRight="7dip"
+    	  android:background="@drawable/division_line"
+    	  android:layout_marginBottom="4dip"/>
+
+</LinearLayout>

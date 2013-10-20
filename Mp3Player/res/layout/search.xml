@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">   
+    <RelativeLayout android:layout_width="match_parent"
+    	android:layout_height="45dip"    	
+    	android:minHeight="45dip"
+    	android:background="#d6d7dc"    	
+    	android:layout_gravity="center_horizontal"
+    	android:gravity="center_horizontal">
+       <AutoCompleteTextView android:id="@+id/search_text" 
+           android:layout_width="250dip"           
+    	   android:layout_height="35dip"  	    	     	   
+    	   android:textColor="@color/black"
+    	   android:layout_alignParentLeft="true" 
+    	   android:layout_centerVertical="true"
+    	   android:drawableLeft="@drawable/search_hit" 
+    	   android:background="@drawable/bg_edittext" 	   
+    	   android:hint="@string/hint_text" />
+       <ImageView android:id="@+id/separate_line"
+           android:layout_width="wrap_content"
+    	   android:layout_height="35dip"     	      	
+    	   android:minHeight="35dip"
+    	   android:layout_toRightOf="@id/search_text" 
+    	   android:layout_centerVertical="true"
+    	   android:layout_marginLeft="8dip"
+    	   android:background="@android:color/transparent" 	 
+    	   android:src="@drawable/vertical_separate_line"/>
+       <ImageButton android:id="@+id/search_button" 
+           android:layout_width="45dip"
+           android:layout_height="45dip"          
+           android:layout_toRightOf="@id/separate_line"  
+           android:layout_centerVertical="true"               	       	   	   
+    	   android:src="@drawable/search_speech_btn"
+    	   android:background="@android:color/transparent" 	   
+    	   android:contentDescription="@string/search_button"/>
+    </RelativeLayout>
+      
+    <ListView android:id="@id/android:list"
+           android:layout_width="fill_parent"
+    	   android:layout_height="wrap_content"
+       	   android:scrollbars="vertical"
+       	   android:listSelector="@drawable/list_item_selected"
+       	   android:drawSelectorOnTop="false"/>
+</LinearLayout>

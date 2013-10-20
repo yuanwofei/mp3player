@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dip"
+    android:orientation="vertical"
+    >
+    <ImageButton android:id="@+id/search_history_flag"
+        android:layout_width="wrap_content"
+    	android:layout_height="50dip"    	
+    	android:src="@drawable/search_history_record_flag"
+    	android:background="@android:color/transparent"
+    	android:layout_gravity="left|center"/>
+    <TextView android:id="@+id/search_history_word"
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"   	
+    	android:paddingLeft="3dip"
+    	android:textSize="10pt"
+    	android:textStyle="normal"
+    	android:textColor="@color/black"
+    	android:layout_toRightOf="@id/search_history_flag"
+    	android:layout_gravity="center"
+    	android:layout_alignBaseline="@id/search_history_flag"
+    	android:layout_centerVertical="true"/>
+    <ImageButton android:id="@+id/clear_search_history_item"
+        android:layout_width="50dip"
+    	android:layout_height="50dip"
+    	android:src="@drawable/button_search_cancel"
+    	android:background="@android:color/transparent"
+    	android:layout_alignParentRight="true"
+    	android:layout_gravity="center"
+    	android:layout_centerVertical="true"
+    	/>
+</RelativeLayout><!-- From: file:/G:/android/workspace/Mp3Player/res/layout/search_history_item.xml -->

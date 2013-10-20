@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">   
+  
+    <item android:id="@android:id/background"> 
+        <shape>   
+            <corners android:radius="0dip" />   
+            <gradient android:startColor="#666666"  
+                android:centerColor="#666666" android:endColor="#666666"  
+               />   
+        </shape>   
+    </item>   
+  
+    <item android:id="@android:id/progress">   
+        <clip>   
+            <shape>   
+                <corners android:radius="0dip" />   
+                <gradient android:startColor="#FFFFFF"  
+                    android:centerColor="#FFFFFF" android:endColor="#FFFFFF" />   
+            </shape>   
+        </clip>   
+    </item>   
+</layer-list>    
+<!-- From: file:/G:/android/workspace/Mp3Player/res/layout/play_seekbar_style.xml -->

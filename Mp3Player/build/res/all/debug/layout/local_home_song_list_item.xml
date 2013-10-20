@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/local_music_list_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="60dip" 
+    android:gravity="center_vertical">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:gravity="center_vertical">
+        	<ImageView 
+		        android:id="@+id/list_item_meun"        
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:minHeight="26dip"
+			    android:minWidth="26dip"			    		
+			    android:layout_marginRight="15dip"
+			    android:background="@android:color/transparent"
+			    android:src="@drawable/local_list_item_menu"
+			    android:layout_gravity="center"
+    			android:layout_centerVertical="true"	    
+			    android:layout_alignParentRight="true"/> 
+        	<TextView android:id="@+id/list_song_name"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_toRightOf="@id/list_item_meun"
+		        android:layout_marginLeft="10dip"
+			    android:singleLine="true"
+		        android:layout_alignParentLeft="true"
+		        android:textColor="@color/white"     
+		        android:textSize="11pt"/>
+        	<TextView android:id="@+id/list_singer_name"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_toRightOf="@id/list_item_meun"
+		        android:layout_alignLeft="@id/list_song_name"
+		        android:singleLine="true"
+		        android:layout_below="@id/list_song_name"
+		        android:textSize="8pt"
+		        android:textColor="@color/white"/>      	
+        </RelativeLayout>    	
+</LinearLayout>    
+<!-- From: file:/G:/android/workspace/Mp3Player/res/layout/local_home_song_list_item.xml -->

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView  xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" 
+	android:layout_height="43dip"
+	android:layout_gravity="center_vertical"
+	android:gravity="center_vertical"
+	android:paddingLeft="6dip"
+	android:textSize="9pt"
+	android:textColor="#000000" 
+	android:id="@+id/online_user_list_item_textview" >
+</TextView> 
+   
+<!-- From: file:/G:/android/workspace/Mp3Player/res/layout/search_keyword_autocomplete_item.xml -->

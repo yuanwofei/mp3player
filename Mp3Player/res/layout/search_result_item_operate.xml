@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="60dip"
+    android:orientation="horizontal"
+    android:baselineAligned="false"
+    android:gravity="center_horizontal"
+    >  
+
+	<TextView android:id="@+id/pre_listen"
+	    android:layout_width="wrap_content"
+		android:layout_height="60dip"
+		android:layout_weight="1"
+		android:textSize="15pt"
+		android:layout_gravity="center"
+		android:gravity="center"
+		android:focusable="true"
+		android:background="@drawable/search_result_item_operate_item"
+		android:text="@string/pre_listen_text"/>
+
+	<TextView android:id="@+id/download"
+	    android:layout_width="wrap_content"
+		android:layout_height="60dip"
+		android:layout_weight="1"
+		android:textSize="15pt"
+		android:layout_gravity="center"
+		android:gravity="center"
+		android:focusable="true"
+		android:background="@drawable/search_result_item_operate_item"
+		android:text="@string/down_mp3_text"/>        
+
+	<TextView android:id="@+id/favourse"
+	    android:layout_width="wrap_content"
+		android:layout_height="60dip"
+		android:layout_weight="1"
+		android:textSize="15pt"
+		android:layout_gravity="center"
+		android:gravity="center"
+		android:focusable="true" 
+		android:background="@drawable/search_result_item_operate_item"
+		android:text="@string/collection_text"/>        
+</LinearLayout>

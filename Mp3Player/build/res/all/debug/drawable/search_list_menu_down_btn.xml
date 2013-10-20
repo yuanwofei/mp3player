@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:state_pressed="false"
+		android:drawable="@drawable/button_triangle_down_normal">
+ 	</item>
+	<item
+		android:state_pressed="true"
+		android:drawable="@drawable/button_triangle_down_pressed">
+ 	</item>
+</selector><!-- From: file:/G:/android/workspace/Mp3Player/res/drawable/search_list_menu_down_btn.xml -->

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="search_result_state">#ffffff</color>
+    <color name="clear_history_text">#000000</color>
+    <color name="search_history_view_background">#e7e7e7</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="blue">#7075bbdc</color>
+    <color name="mini_playview_bg_normal">#5193bd</color>
+    <color name="mini_playview_bg_pressed">#6cb3df</color>
+    <color name="transparent">#00000000</color>
+    <color name="search_result_item">#ebebeb</color>
+    <color name="gray_white">#cfcfcf</color>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:Android="http://schemas.android.com/apk/res/android"
+        Android:interpolator="@android:anim/decelerate_interpolator">
+    <scale xmlns:android="http://schemas.android.com/apk/res/android"
+        Android:fromXScale="2.0" android:toXScale="1.0"
+        Android:fromYScale="2.0" android:toYScale="1.0" 
+        Android:pivotX="50%p" android:pivotY="50%p"
+        Android:duration="@android:integer/config_mediumAnimTime" />
+</set>
+<!-- From: file:/G:/android/workspace/Mp3Player/res/anim/zoomin.xml -->
