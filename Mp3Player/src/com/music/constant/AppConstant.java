@@ -63,22 +63,22 @@ public interface AppConstant {
 		public static RelativeLayout playerBg;
 	}
 	
-	public final static String DEBUG_TAG = "yuan.mp3player";
+	public final static String DEBUG_TAG = "com.music";
 	
 	//任务栏显示的信息
 	static String title = new StringBuilder().append(AppConstant.PlayComponent.songName)
 			.append(" - ").append(AppConstant.PlayComponent.singerName).toString();
 	
 	/***/
-	public final static String LRC_MESSAGE_ACTION = "yuan.mp3player.lrcmessage.action";
+	public final static String LRC_MESSAGE_ACTION = "com.music.lrcmessage.action";
 	/***/
-	public final static String UNDATE_LIST_ACTION = "yuan.mp3player.remotelist.action";
+	public final static String UNDATE_LIST_ACTION = "com.music.remotelist.action";
 	/***/
-	public final static String SEARCH_KEY_WORD_ACTION = "yuan.mp3player.searchkeyword.action";
+	public final static String SEARCH_KEY_WORD_ACTION = "com.music.searchkeyword.action";
 	/**播放模式*/
-	public final static String PLAY_MODE_ACTION = "yuan.mp3player.playmode.action";
+	public final static String PLAY_MODE_ACTION = "com.music.playmode.action";
 	/**歌手图片加载完毕标志*/
-	public final static String LOAD_SINGER_IMAGE_OVER = "yuan.mp3player.load.singerimage.over";
+	public final static String LOAD_SINGER_IMAGE_OVER = "com.music.load.singerimage.over";
 	/**歌词加载完毕*/
-	public final static String LOAD_LYRIC_OVER = "yuan.mp3player.load.lyric.over";
+	public final static String LOAD_LYRIC_OVER = "com.music.load.lyric.over";
 }

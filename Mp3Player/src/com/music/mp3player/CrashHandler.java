@@ -30,7 +30,7 @@ public class CrashHandler implements UncaughtExceptionHandler{
 	private static final String VERSION_NAME = "versionName";    
 	private static final String VERSION_CODE = "versionCode";    
 	private static final String STACK_TRACE = "STACK_TRACE"; 
-	private static final String CRASH_REPORTER_EXTENSION = ".error";
+	private static final String CRASH_REPORTER_EXTENSION = ".txt";
 
 	private static CrashHandler crashHandler = null;
 	private Context context = null;
@@ -116,8 +116,7 @@ public class CrashHandler implements UncaughtExceptionHandler{
         printWriter.close();  
         deviceCrashInfo.put(STACK_TRACE, result);
         try {  
-            long timestamp = System.currentTimeMillis();  
-            String fileName = "crash-" + getCurrentTime() + CRASH_REPORTER_EXTENSION;  
+            String fileName = "crash_" + getCurrentTime() + CRASH_REPORTER_EXTENSION;  
             FileOutputStream trace = context.openFileOutput(fileName,Context.MODE_PRIVATE);  
             FileOutputStream fos = new FileOutputStream(FileUtils.CRASHDIR + fileName);        
             deviceCrashInfo.store(trace, null); 
@@ -187,7 +186,7 @@ public class CrashHandler implements UncaughtExceptionHandler{
 		StringBuilder str = new StringBuilder();
 	    Calendar ca = Calendar.getInstance();
 	    int year = ca.get(Calendar.YEAR);//获取年份
-	    int month=ca.get(Calendar.MONTH);//获取月份
+	    int month=ca.get(Calendar.MONTH + 1);//获取月份
 	    int day=ca.get(Calendar.DATE);//获取日
 	    int minute=ca.get(Calendar.MINUTE);//分
 	    int hour=ca.get(Calendar.HOUR_OF_DAY);//小时

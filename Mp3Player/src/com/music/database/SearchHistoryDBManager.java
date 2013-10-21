@@ -13,7 +13,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class SearchHistoryDBManager {
 
-	private SearchHistoryDBHelper dbHelper;  
+	private SearchHistoryDBHelper dbHelper;
 	private SQLiteDatabase db;
 	public SearchHistoryDBManager(Context context) {
 		dbHelper = new SearchHistoryDBHelper(context);		
