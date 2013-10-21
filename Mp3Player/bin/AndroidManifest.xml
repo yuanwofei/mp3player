@@ -1,5 +1,5 @@
 ﻿<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="yuan.mp3player" 
+    package="com.music" 
     android:versionCode="6" 
 	android:installLocation="auto"
     android:versionName="6.0">
@@ -29,7 +29,7 @@
 
 	
     <application
-        android:name=".CrashApplication"  
+        android:name="com.music.mp3player.CrashApplication"  
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/no_title"
@@ -45,12 +45,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/> 
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:label="@string/app_name" android:screenOrientation="portrait"></activity>           
-        <activity android:name=".LocalHomeActivity" android:label="@string/app_name" android:screenOrientation="portrait"></activity>
-        <activity android:name=".OnlineActivity" android:label="@string/app_name" android:screenOrientation="portrait"></activity>
-        <activity android:name=".SearchActivity" android:label="@string/app_name" android:screenOrientation="portrait"></activity>
-        <activity android:name=".SearchHistoryActivity" android:label="@string/app_name" android:screenOrientation="portrait"></activity>
-        <service android:name=".service.DownloadService"></service> 
-        <service android:name=".service.PlayerService"></service> 
+        <activity android:name="com.music.mp3player.MainActivity" android:label="@string/app_name" android:screenOrientation="portrait"></activity>           
+        <activity android:name="com.music.mp3player.LocalHomeActivity" android:label="@string/app_name" android:screenOrientation="portrait"></activity>
+        <activity android:name="com.music.mp3player.OnlineActivity" android:label="@string/app_name" android:screenOrientation="portrait"></activity>
+        <activity android:name="com.music.mp3player.SearchActivity" android:label="@string/app_name" android:screenOrientation="portrait"></activity>
+        <activity android:name="com.music.mp3player.service.DownloadServicevity" android:label="@string/app_name" android:screenOrientation="portrait"></activity>
+        <service android:name="com.music.mp3player.DownloadService"></service> 
+        <service android:name="com.music.mp3player.PlayerService"></service> 
     </application>
 </manifest>
