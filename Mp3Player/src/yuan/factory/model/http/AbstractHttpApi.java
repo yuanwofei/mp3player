@@ -1,4 +1,4 @@
-package yuan.http;
+package yuan.factory.model.http;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,21 +24,22 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
+import yuan.factory.model.Mp3Info;
+import yuan.factory.model.xml.AbstractParse;
+
+import android.os.Bundle;
+
 public abstract class AbstractHttpApi implements HttpApi{
 	
 	/**·þÎñÆ÷µØÖ·*/
-	public final static String SERVER_URL = "http://tingapi.ting.baidu.com/v1/restserver/ting?";
+	public final static String SERVER_BASE_URL = "http://tingapi.ting.baidu.com/v1/restserver/ting?";
 	public final static String XML = "xml";
 	public final static String METHOD = "method";
 	public final static String FORMAT = "format";
 	public final static String PAGE_NO = "page_no";
 	public final static String PAGE_SIZE = "page_size";
 	public final static String QUERY = "query";
-	public final static String SONG_ID = "songid";
-	
-	public AbstractHttpApi() {
-		// TODO Auto-generated constructor stub
-	}
+	public final static String SONG_ID = "songid";	
 
 	public HttpPost createHttpPost(String serverUrl, List<NameValuePair> nameValuePair) {
 		HttpPost httppost = new HttpPost(serverUrl);
@@ -51,15 +52,15 @@ public abstract class AbstractHttpApi implements HttpApi{
 		return httppost;
 	}
 
-	public InputStream doHttpPost() {
-		HttpPost httpRequest = createHttpPost(SERVER_URL, getNameValuePair());
+	public InputStream doHttpPost(Bundle bundle) {
+		HttpPost httpRequest = createHttpPost(SERVER_BASE_URL, getNameValuePair(bundle));
 		HttpClient httpClient = createHttpClient();
 		HttpClientParams.setCookiePolicy(httpClient.getParams(), CookiePolicy.BROWSER_COMPATIBILITY);
 		HttpResponse response = executeHttpRequest(httpRequest, httpClient);	
 		return getInputStream(response);	
 	}	
 	
-	public static final DefaultHttpClient createHttpClient() {
+	public DefaultHttpClient createHttpClient() {
 		SchemeRegistry schemeregistry = new SchemeRegistry();
 		schemeregistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
 		schemeregistry.register(new Scheme("https", SSLSocketFactory.getSocketFactory(), 443));
@@ -68,7 +69,7 @@ public abstract class AbstractHttpApi implements HttpApi{
 		return new DefaultHttpClient(new ThreadSafeClientConnManager(httpparams, schemeregistry), httpparams);
 	}
 	
-	private static final HttpParams createHttpParams(int i) {
+	private HttpParams createHttpParams(int i) {
 		BasicHttpParams basichttpparams = new BasicHttpParams();
 		HttpConnectionParams.setStaleCheckingEnabled(basichttpparams, false);
 		HttpConnectionParams.setConnectionTimeout(basichttpparams, 60000);
@@ -104,5 +105,7 @@ public abstract class AbstractHttpApi implements HttpApi{
 		}
 		return inputStream;		
 	}
-	public abstract List<NameValuePair> getNameValuePair();
+	public abstract List<NameValuePair> getNameValuePair(Bundle bundle);
+	
+	public abstract List<Mp3Info> execute(Bundle bundle,Mp3Info mp3Info);
 }

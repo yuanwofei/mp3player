@@ -1,4 +1,4 @@
-package yuan.xml;
+package yuan.factory.model.xml;
 
 import java.io.InputStream;
 import java.util.List;
@@ -7,15 +7,15 @@ import yuan.factory.model.Mp3Info;
 
 /**解析的抽象类
  * @param <E>*/
-public abstract class AbstractParse implements Parse {
-
-	public List<Mp3Info> parseXML(InputStream xmlContent) {
-		return null;
-	}
+public abstract class AbstractParse{
 
 	public void parseXml(InputStream xmlContent, Mp3Info mp3Info) {
 		
 	}
+	
+	public List<Mp3Info> parseXML(InputStream xmlContent) {
+		return null;
+	};
 	
 	/**清除名字中包含的无用字符*/	 
 	public static String handerName(String name) {

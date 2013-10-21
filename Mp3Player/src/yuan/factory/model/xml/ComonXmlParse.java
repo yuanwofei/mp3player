@@ -1,4 +1,4 @@
-package yuan.xml;
+package yuan.factory.model.xml;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,9 +13,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import yuan.factory.XmlParseFactory;
 import yuan.factory.model.Mp3Info;
 
 public class ComonXmlParse extends AbstractParse {
+
+	private ComonXmlParse() {		
+	}
 
 	@Override
 	public List<Mp3Info> parseXML(InputStream xmlContent) {
@@ -65,5 +69,12 @@ public class ComonXmlParse extends AbstractParse {
 			System.out.println("½âÎöXML³ö´í" +"-------c");
 		}						
 		return mp3Infos;	
-	}			
+	}
+	
+	public static XmlParseFactory factory = new XmlParseFactory() {	
+		@Override
+		public AbstractParse getXmlParse() {
+			return new ComonXmlParse();
+		}
+	};
 }

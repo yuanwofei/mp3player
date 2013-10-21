@@ -1,4 +1,4 @@
-package yuan.factory.model;
+package yuan.factory.model.playmode;
 
 import yuan.factory.PlayModeFactory;
 
@@ -13,26 +13,12 @@ public class SequencePlayMode extends AbstractPlayMode {
 
 	@Override
 	public int preSongIndex(int index, int size) {
-		//System.out.println("当前歌曲的ID----before--->" + index);
-		if(index - 1 >= 0) {
-			index = index - 1;
-		} else {
-			index = size - 1;
-		}
-		//System.out.println("前一首歌曲的ID------->" + index);
-		return index;
+		return (index - 1 >= 0) ? index - 1 : size - 1;
 	}
 
 	@Override
 	public int nextSongIndex(int index, int size) {
-		//System.out.println("当前歌曲的ID----after--->" + index);
-		if(index + 1 < size) {
-			index = index + 1;
-		} else {
-			index = 0;
-		}
-		//System.out.println("前一首歌曲的ID------->" + index);
-		return index;		
+		return (index + 1 < size) ? index + 1 : 0;		
 	}
 
 	public static PlayModeFactory factory = new PlayModeFactory() {		

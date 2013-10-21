@@ -1,25 +1,29 @@
-package yuan.xml;
+package yuan.factory.model.xml;
 
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import yuan.download.HttpDownloader;
+import yuan.factory.XmlParseFactory;
 
 public class SingerImgXmlParse extends AbstractParse {
+	
+	private SingerImgXmlParse() {		
+	}
 
 	private static String parseXML(String strContent) {
 		String regExp = "(\\<song\\_id\\>)([0-9]+)(\\<\\/song\\_id\\>)";
 		Pattern pattern = Pattern.compile(regExp);
 		Matcher mather = pattern.matcher(strContent);
-		Vector<String> songId = new Vector<String>();
+		ArrayList<String> songId = new ArrayList<String>();
 		while(mather.find()) {
 			songId.add(mather.group(2));
 		}
 		if(songId.size() <= 0) {
 			return null;
 		}
-		return songId.get(getRandom(songId.size()));		
+		return songId.get(getRandom(songId.size()));
 	}
 	
 	/**获取一个30以内的随机数*/
@@ -36,13 +40,20 @@ public class SingerImgXmlParse extends AbstractParse {
 		String regExp = "(http://)([a-z]+\\.)+([a-z0-9]+\\/)+([0-9a-z]+)(.jpg)";
 		Pattern pattern = Pattern.compile(regExp);
 		Matcher mather = pattern.matcher(HttpDownloader.readURL(str.toString()));
-		Vector<String> singerImg = new Vector<String>();
+		ArrayList<String> singerImg = new ArrayList<String>();
 		while(mather.find()) {
 			singerImg.add(mather.group(2));
 		}
 		if(singerImg.size() <= 0) {
 			return null;
 		}
-		return singerImg.lastElement();
+		return singerImg.get(singerImg.size() - 1);
 	}
+	
+	public static XmlParseFactory factory = new XmlParseFactory() {	
+		@Override
+		public AbstractParse getXmlParse() {
+			return new SingerImgXmlParse();
+		}
+	};
 }

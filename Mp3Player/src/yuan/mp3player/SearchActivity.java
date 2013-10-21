@@ -5,10 +5,11 @@ import java.util.List;
 
 import yuan.constant.AppConstant;
 import yuan.constant.MusicPlayer;
-import yuan.factory.CommonSearchFactory;
-import yuan.factory.OnlineFactory;
+import yuan.factory.HttpApiFactory;
 import yuan.factory.model.CopyMp3Infos;
 import yuan.factory.model.Mp3Info;
+import yuan.factory.model.http.CommonHttpApi;
+import yuan.factory.model.http.Mp3InfoHttpApi;
 import yuan.mp3player.service.PlayerService;
 import yuan.utils.Network;
 import android.app.ListActivity;
@@ -163,9 +164,14 @@ public class SearchActivity extends ListActivity implements OnScrollListener {
 	 * @throws Exception
 	 */
 	private void search(String page_no, String page_size, String keyWord) {
-		OnlineFactory factory = new CommonSearchFactory(page_no, page_size,
-				keyWord);
-		mp3Infos = factory.execute();
+		HttpApiFactory factory = CommonHttpApi.factory;
+		Bundle bundle = new Bundle();
+		bundle.putString("page_no", page_no);
+		bundle.putString("page_size", page_size);
+		bundle.putString("keyWord", keyWord);
+		mp3Infos = factory.getHttpApi().execute(bundle, null);
+		//OnlineFactory factory = new CommonSearchFactory(page_no, page_size,keyWord);
+		//mp3Infos = factory.execute();
 	}
 
 	private void updateList() {
@@ -204,10 +210,12 @@ public class SearchActivity extends ListActivity implements OnScrollListener {
 	 * 第二次以上的搜索
 	 */
 	private void searchMore() {
-		OnlineFactory factory = new CommonSearchFactory(
-				Integer.toString(++page_no), Integer.toString(page_size),
-				keyWord);
-		more_mp3Infos = factory.execute();
+		HttpApiFactory factory = CommonHttpApi.factory;
+		Bundle bundle = new Bundle();
+		bundle.putString("page_no", ++page_no + "");
+		bundle.putString("page_size", page_size + "");
+		bundle.putString("keyWord", keyWord);
+		more_mp3Infos = factory.getHttpApi().execute(bundle, null);
 	}
 
 	/**

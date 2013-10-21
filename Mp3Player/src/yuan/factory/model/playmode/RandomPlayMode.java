@@ -1,4 +1,4 @@
-package yuan.factory.model;
+package yuan.factory.model.playmode;
 
 import yuan.factory.PlayModeFactory;
 
@@ -14,14 +14,12 @@ public class RandomPlayMode extends AbstractPlayMode {
 	@Override
 	public int preSongIndex(int index, int size) {
 		//Math.random()*(b-a)+a从a - b之间随机选取一个数
-		index = (int) (Math.random()*(size - 1));
-		return index;
+		return (int) (Math.random()*(size - 1));
 	}
 
 	@Override
 	public int nextSongIndex(int index, int size) {
-		index = (int) (Math.random()*(size - 1));
-		return index;
+		return (int) (Math.random()*(size - 1));
 	}
 	
 	public static PlayModeFactory factory = new PlayModeFactory() {	

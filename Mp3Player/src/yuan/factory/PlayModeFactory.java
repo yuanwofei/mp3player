@@ -1,6 +1,6 @@
 package yuan.factory;
 
-import yuan.factory.model.AbstractPlayMode;
+import yuan.factory.model.playmode.AbstractPlayMode;
 
 public interface PlayModeFactory {
 	

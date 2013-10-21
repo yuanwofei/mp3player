@@ -1,4 +1,4 @@
-package yuan.factory.model;
+package yuan.factory.model.playmode;
 
 import yuan.factory.PlayModeFactory;
 

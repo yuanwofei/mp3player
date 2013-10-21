@@ -1,14 +1,15 @@
 package yuan.mp3player.service;
 
 import yuan.download.HttpDownloader;
-import yuan.factory.Mp3InfoSearchFactory;
-import yuan.factory.OnlineFactory;
+import yuan.factory.HttpApiFactory;
 import yuan.factory.model.Mp3Info;
+import yuan.factory.model.http.Mp3InfoHttpApi;
 import yuan.notification.DownloadNotification;
 import yuan.utils.FileUtils;
 import android.app.Service;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
 
@@ -57,8 +58,10 @@ public class DownloadService extends Service{
 		
 		/**下载之前先搜索MP3的相关信息*/
 		private void prepare() {
-			OnlineFactory factory = new Mp3InfoSearchFactory(mp3Info.getMp3IdCode(), mp3Info);					
-			factory.execute();
+			HttpApiFactory factory = Mp3InfoHttpApi.factory;
+			Bundle bundle = new Bundle();
+			bundle.putString("mp3Id", mp3Info.getMp3IdCode());
+			factory.getHttpApi().execute(bundle, mp3Info);
 		}				
 		
 		/**下载听百度歌词*/

@@ -5,10 +5,10 @@ import java.util.List;
 
 import yuan.constant.AppConstant;
 import yuan.constant.MusicPlayer;
-import yuan.factory.Mp3InfoSearchFactory;
-import yuan.factory.OnlineFactory;
+import yuan.factory.HttpApiFactory;
 import yuan.factory.model.CopyMp3Infos;
 import yuan.factory.model.Mp3Info;
+import yuan.factory.model.http.Mp3InfoHttpApi;
 import yuan.image.LoadImageThread;
 import yuan.lyric.LyricLoadThread;
 import yuan.mp3player.MainActivity;
@@ -26,6 +26,7 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnErrorListener;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.widget.Toast;
 
@@ -240,8 +241,10 @@ public class PlayerService extends Service{
 				setStopState();			
 			}
 			if(mp3Info.getMp3URL() == null && mp3Info.getMp3IdCode() != null) {
-				OnlineFactory factory = new Mp3InfoSearchFactory(mp3Info.getMp3IdCode(), mp3Info);
-				factory.execute();//获取MP3地址			
+				HttpApiFactory factory = Mp3InfoHttpApi.factory;
+				Bundle bundle = new Bundle();
+				bundle.putString("mp3Id", mp3Info.getMp3IdCode());
+				factory.getHttpApi().execute(bundle, mp3Info);//获取MP3地址
 			}
 			Uri mp3Uri = Uri.parse(mp3Info.getMp3URL());
 			MusicPlayer.setPlayer(MediaPlayer.create(PlayerService.this, mp3Uri));													
