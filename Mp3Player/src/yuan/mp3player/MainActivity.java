@@ -2,13 +2,13 @@ package yuan.mp3player;
 
 import java.util.List;
 import yuan.constant.AppConstant;
-import yuan.factory.IPlayModeFactory;
-import yuan.factory.RandomPlayModeFactory;
-import yuan.factory.SequencePlayModeFactory;
-import yuan.factory.SinglePlayModeFactory;
+import yuan.factory.PlayModeFactory;
 import yuan.factory.model.AbstractPlayMode;
 import yuan.factory.model.CopyMp3Infos;
 import yuan.factory.model.Mp3Info;
+import yuan.factory.model.RandomPlayMode;
+import yuan.factory.model.SequencePlayMode;
+import yuan.factory.model.SinglePlayMode;
 import yuan.lyric.LyricTextView;
 import yuan.mp3player.service.PlayerService;
 import yuan.notification.TrayNotification;
@@ -52,7 +52,7 @@ public class MainActivity extends TabActivity {
 	private static LyricTextView lyricView = null;
 	private boolean isMainUI = true;
 	
-	private static IPlayModeFactory playModeFactory;
+	private static PlayModeFactory playModeFactory;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {			
@@ -132,7 +132,7 @@ public class MainActivity extends TabActivity {
 		return playModeFactory.createPlayMode();
 	}
 	
-	public void setPlayModeFactory(IPlayModeFactory playModeFactory) {
+	public void setPlayModeFactory(PlayModeFactory playModeFactory) {
 		MainActivity.playModeFactory = playModeFactory;
 	}
 
@@ -143,12 +143,12 @@ public class MainActivity extends TabActivity {
 		intent.putExtra("MSG", flag);
 		intent.putExtra("mp3Info", mp3Info);
 		intent.putExtra("index", index);
-		this.startService(intent);
+		startService(intent);
 	}
 
 	/** 初始化各种组件 */
 	private void initComponent() {
-		setPlayModeFactory(new SequencePlayModeFactory());
+		setPlayModeFactory(SequencePlayMode.factory);
 		
 		appFlipper = (ViewFlipper) findViewById(R.id.app_viewflipper);
 		//appFlipper.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom));
@@ -210,7 +210,7 @@ public class MainActivity extends TabActivity {
 				AppConstant.PlayComponent.playMode
 						.setImageResource(R.drawable.random_mode);
 				modeValue = AppConstant.PlayMode.RANDOM_MODE;
-				setPlayModeFactory(new RandomPlayModeFactory());
+				setPlayModeFactory(RandomPlayMode.factory);
 				Toast.makeText(MainActivity.this, R.string.random_mode, Toast.LENGTH_SHORT)
 						.show();
 				break;
@@ -218,7 +218,7 @@ public class MainActivity extends TabActivity {
 				AppConstant.PlayComponent.playMode
 						.setImageResource(R.drawable.single_mode);
 				modeValue = AppConstant.PlayMode.SINGLE_MODE;
-				setPlayModeFactory(new SinglePlayModeFactory());
+				setPlayModeFactory(SinglePlayMode.factory);
 				Toast.makeText(MainActivity.this, R.string.single_mode, Toast.LENGTH_SHORT)
 						.show();
 				break;
@@ -226,7 +226,7 @@ public class MainActivity extends TabActivity {
 				AppConstant.PlayComponent.playMode
 						.setImageResource(R.drawable.sequence_mode);
 				modeValue = AppConstant.PlayMode.SEQUENCE_MODE;
-				setPlayModeFactory(new SequencePlayModeFactory());
+				setPlayModeFactory(SequencePlayMode.factory);
 				Toast.makeText(MainActivity.this, R.string.sequence_mode, Toast.LENGTH_SHORT)
 						.show();
 				break;

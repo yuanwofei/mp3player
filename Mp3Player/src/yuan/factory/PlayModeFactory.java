@@ -2,7 +2,7 @@ package yuan.factory;
 
 import yuan.factory.model.AbstractPlayMode;
 
-public interface IPlayModeFactory {
+public interface PlayModeFactory {
 	
 	public AbstractPlayMode createPlayMode();
 	
