@@ -2,18 +2,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/background"
     android:keepScreenOn="true"
-    android:background="@drawable/root_bg" 
-    android:orientation="vertical" 
-    android:paddingLeft="5dip"
-    android:paddingRight="5dip">
+    android:orientation="vertical">
+    <ImageView android:id="@+id/default_bg"
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:scaleType="fitXY"
+    	android:src="@drawable/default_bg"/>
+ 
+    <ImageView android:id="@+id/singer_bg"
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:scaleType="fitXY"
+    	/>
+    
     <ImageButton android:id="@+id/return_back" 
         android:contentDescription="@string/return_back"
         android:background="@android:color/transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dip"
+        android:paddingLeft="5dip"
         android:src="@drawable/return_back_icon"/>   
     <TextView android:id="@+id/song_name" 
         android:layout_width="fill_parent"
@@ -102,9 +111,9 @@
         android:layout_marginRight="40dp"
         android:minHeight="4dp"
     	android:maxHeight="4dp"
-        android:progressDrawable="@layout/play_seekbar_style"  
+        android:progressDrawable="@drawable/play_seekbar_style"  
         style="?android:attr/progressBarStyleHorizontal"
-        android:thumb="@layout/play_seekbar_thumb" 
+        android:thumb="@drawable/play_seekbar_thumb" 
         android:layout_marginBottom="32dip"
         android:layout_above="@id/play_control"/>
     

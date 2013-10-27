@@ -8,8 +8,11 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.TreeSet;
 
@@ -183,17 +186,7 @@ public class CrashHandler implements UncaughtExceptionHandler{
     } 
     
 	private String getCurrentTime() {
-		StringBuilder str = new StringBuilder();
-	    Calendar ca = Calendar.getInstance();
-	    int year = ca.get(Calendar.YEAR);//获取年份
-	    int month=ca.get(Calendar.MONTH + 1);//获取月份
-	    int day=ca.get(Calendar.DATE);//获取日
-	    int minute=ca.get(Calendar.MINUTE);//分
-	    int hour=ca.get(Calendar.HOUR_OF_DAY);//小时
-	    int second=ca.get(Calendar.SECOND);//秒	     
-	    
-	    str.append(year).append(".").append(month).append(".").append(day).
-	    	append("_").append(hour).append("-").append(minute).append("-").append(second);	    
-		return str.toString();		
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd_hh.mm.ss", Locale.getDefault());
+		return sdf.format(new Date());		
 	}
 }

@@ -7,13 +7,19 @@
     android:layout_alignParentBottom="true"
 	android:background="@drawable/mini_play_control_view_bg">
     
-    <ImageView android:id="@+id/mini_singerimage"
+    <ImageView android:id="@+id/mini_default_bg"
 		android:layout_width="52dip"
 		android:layout_height="52dip"
 		android:layout_alignParentLeft="true"
 		android:layout_centerInParent="true"			
-		android:src="@drawable/mini_default_singerimage"/>
-   
+		android:src="@drawable/mini_default_bg"/>
+   	
+    <ImageView android:id="@+id/mini_singer_bg"
+		android:layout_width="52dip"
+		android:layout_height="52dip"
+		android:layout_alignParentLeft="true"
+		android:layout_centerInParent="true"/>
+    
     <LinearLayout 
         android:id="@+id/control"
 	    android:layout_width="wrap_content"
@@ -45,7 +51,7 @@
     <LinearLayout android:layout_width="wrap_content"
 		android:layout_marginLeft="3dip"
 		android:layout_height="match_parent"
-		android:layout_toRightOf="@id/mini_singerimage"
+		android:layout_toRightOf="@id/mini_default_bg"
 		android:layout_toLeftOf="@id/control"
 		android:gravity="center_vertical"
 		android:orientation="vertical">

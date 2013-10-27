@@ -2,7 +2,7 @@ package com.music.lyric;
 
 import java.util.Vector;
 
-import com.music.constant.AppConstant;
+import com.music.constant.Music;
 import com.music.constant.MusicPlayer;
 import com.music.factory.model.Mp3Info;
 import com.music.mp3player.MainActivity;
@@ -58,7 +58,7 @@ public class LyricUpdate {
 		/**发送广播以更新歌词*/ 
 		private void sendLyricBroadcast(String lyricMsg, Context context) {
 			Intent intent = new Intent();
-			intent.setAction(AppConstant.LRC_MESSAGE_ACTION);
+			intent.setAction(Music.LRC_MESSAGE_ACTION);
 			intent.putExtra("lyricMsg", lyricMsg);
 			context.sendBroadcast(intent);
 		}

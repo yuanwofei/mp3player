@@ -3,25 +3,11 @@ package com.music.mp3player.service;
 import java.io.File;
 import java.util.List;
 
-import com.music.R;
-import com.music.constant.AppConstant;
-import com.music.constant.MusicPlayer;
-import com.music.factory.HttpApiFactory;
-import com.music.factory.model.CopyMp3Infos;
-import com.music.factory.model.Mp3Info;
-import com.music.factory.model.http.Mp3InfoHttpApi;
-import com.music.image.LoadImageThread;
-import com.music.lyric.LyricLoadThread;
-import com.music.mp3player.MainActivity;
-import com.music.mp3player.broadcast.LoadImageBroadcastReceiver;
-import com.music.mp3player.broadcast.LoadLyricBroadcastReceiver;
-import com.music.notification.TrayNotification;
-import com.music.seekbar.PlayTime;
-import com.music.utils.FileUtils;
-import com.music.utils.Network;
-
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnErrorListener;
@@ -31,7 +17,24 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.widget.Toast;
 
-public class PlayerService extends Service{
+import com.music.R;
+import com.music.constant.Music;
+import com.music.constant.MusicPlayer;
+import com.music.factory.HttpApiFactory;
+import com.music.factory.model.CopyMp3Infos;
+import com.music.factory.model.Mp3Info;
+import com.music.factory.model.http.Mp3InfoHttpApi;
+import com.music.lyric.LyricLoadThread;
+import com.music.mp3player.MainActivity;
+import com.music.mp3player.broadcast.LoadLyricBroadcastReceiver;
+import com.music.notification.TrayNotification;
+import com.music.seekbar.PlayTime;
+import com.music.utils.FileUtils;
+import com.music.utils.Network;
+
+public class PlayService extends Service{
+	
+	private static final String TAG = "PlayService";
 	
 	private boolean isPlaying = false;
 	private boolean isPause = false;
@@ -39,9 +42,12 @@ public class PlayerService extends Service{
 	private int msg = 0;
 	
 	private PlayTime playTime = null;
-	private LoadImageThread loadImage = null;	
 	private LyricLoadThread lyricLoadThread = null;	
 	private Mp3Info mp3Info = null;
+	
+	PlayServiceReceiver mReceiver;
+	
+	//MediaPlayer mPlayer;
 	
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -56,19 +62,38 @@ public class PlayerService extends Service{
 			MainActivity.getLyricView().stopRefreshLyric();
 			MusicPlayer.getPlayer().stop();
 			MusicPlayer.getPlayer().release();
-		}		
+		}	
+		if (mReceiver != null) {
+			unregisterReceiver(mReceiver);
+		}
+	}
+	
+	class PlayServiceReceiver extends BroadcastReceiver {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			getExtra(intent);
+			selectPlayType();			
+		}	
 	}
 	
 	@Override
-	public int onStartCommand(Intent intent, int flags, int startId) {
-		getExtra(intent);		
+	public void onCreate() {
+		super.onCreate();
+		//mPlayer = new MediaPlayer();
+		mReceiver = new PlayServiceReceiver();
+		registerReceiver(new PlayServiceReceiver(), new IntentFilter(Music.PLAY_MUSIC_ACTION));
+	}
+
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {	
+		getExtra(intent);	
 		selectPlayType();		
 		return super.onStartCommand(intent, flags, startId);
 	}
 
 	/**获取从MainActivity传过来的信息*/
 	private void getExtra(Intent intent) {
-		mp3Info = (Mp3Info) intent.getSerializableExtra("mp3Info");
+		mp3Info = (Mp3Info)intent.getSerializableExtra("mp3Info");		
 		index = intent.getIntExtra("index", 0);//得到所选MP3在当前列表中的位置	
 		msg = intent.getIntExtra("MSG", 0);
 	}
@@ -76,13 +101,13 @@ public class PlayerService extends Service{
 	/**选择播放类型*/
 	private void selectPlayType() {
 		if(mp3Info != null) {
-			if(msg == AppConstant.PlayerMsg.PLAY_MSG) {			
+			if(msg == Music.PlayState.PLAY) {			
 				play(mp3Info);
 			}
-			else if(msg == AppConstant.PlayerMsg.BEFORE_MSG) {
+			else if(msg == Music.PlayState.PRE) {
 				before(mp3Info);
 			}
-			else if(msg == AppConstant.PlayerMsg.AFTER_MSG) {
+			else if(msg == Music.PlayState.NEXT) {
 				after(mp3Info);
 			}
 		}
@@ -178,24 +203,25 @@ public class PlayerService extends Service{
 	
 	/**歌曲的持续时间*/
 	private void setMp3Time() {
-		AppConstant.PlayComponent.mp3Time.setText(FileUtils.
-				IntTimeConvert(MusicPlayer.getPlayer().getDuration()));
-		AppConstant.PlayComponent.miniMp3Time.setText(" - " + FileUtils.
-				IntTimeConvert(MusicPlayer.getPlayer().getDuration()));
+		Intent intent = new Intent();
+		intent.setAction(Music.UPDATE_UI_ACTION);
+		intent.setFlags(0x14);
+		intent.putExtra("duration", FileUtils.IntTimeConvert(MusicPlayer.getPlayer().getDuration()));
+		sendBroadcast(intent);
 	}
 	
 	private void setPlayButton() {
-		AppConstant.PlayComponent.playButton.setImageDrawable(getResources().
-				getDrawable(R.drawable.play));
-		AppConstant.PlayComponent.miniPlayBtn.setImageDrawable(getResources().
-				getDrawable(R.drawable.play));
+		Intent intent = new Intent();
+		intent.setAction(Music.UPDATE_UI_ACTION);
+		intent.setFlags(0x11);
+		sendBroadcast(intent);	
 	}
 	
 	private void setPauseButton() {
-		AppConstant.PlayComponent.playButton.setImageDrawable(getResources().
-				getDrawable(R.drawable.pause));
-		AppConstant.PlayComponent.miniPlayBtn.setImageDrawable(getResources().
-				getDrawable(R.drawable.pause));
+		Intent intent = new Intent();
+		intent.setAction(Music.UPDATE_UI_ACTION);
+		intent.setFlags(0x12);
+		sendBroadcast(intent);		
 	}
 	
 	/**MediaPlayer监听器，用于判断一首歌是否已播放完毕，以便播放下一首歌曲 */
@@ -216,10 +242,10 @@ public class PlayerService extends Service{
 	}
 	
 	/***/
-	private class ConnectAsyncTask extends AsyncTask<String,String,String>{
+	private class ConnectAsyncTask extends AsyncTask<String, String, String>{
 		@Override
 		protected String doInBackground(String... params) {					
-			loadMp3();						
+			loadMp3();					
 			setMediaPlayer();	
 			return null;
 		}
@@ -227,11 +253,9 @@ public class PlayerService extends Service{
 		@Override
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);							
-			loadLyric();
-			loadSingerImg();
-			updateApplicationTrayTitle();
-			showSingerName();		
-			showSongName();	
+			updateUI();
+			loadLyric();		
+			updateApplicationTrayTitle();			
 			initTime();
 			setPlayState();	//设置播放状态			
 		}
@@ -248,7 +272,8 @@ public class PlayerService extends Service{
 				factory.getHttpApi().execute(bundle, mp3Info);//获取MP3地址
 			}
 			Uri mp3Uri = Uri.parse(mp3Info.getMp3URL());
-			MusicPlayer.setPlayer(MediaPlayer.create(PlayerService.this, mp3Uri));													
+			System.out.println(mp3Info.getMp3URL());
+			MusicPlayer.setPlayer(MediaPlayer.create(PlayService.this, mp3Uri));													
 		}
 		
 		/**设置MediaPlayer的播放参数*/
@@ -265,48 +290,38 @@ public class PlayerService extends Service{
 			}	
 		}
 		
-		/**显示歌曲名*/
-		private void showSongName() {
-			AppConstant.PlayComponent.songName.setText(mp3Info.getMp3SimpleName());
-			AppConstant.PlayComponent.miniSongName.setText(mp3Info.getMp3SimpleName());			
-		}
-		
-		/**显示歌手名*/
-		private void showSingerName() {
-			AppConstant.PlayComponent.singerName.setText(mp3Info.getSingerName());
-			AppConstant.PlayComponent.miniSingerName.setText(mp3Info.getSingerName());
-		}
+		private void updateUI() {
+			Intent intent = new Intent();
+			intent.setAction(Music.UPDATE_UI_ACTION);
+			intent.setFlags(0x13);
+			intent.putExtra("musicSimpleName", mp3Info.getMp3SimpleName());
+			intent.putExtra("singerName", mp3Info.getSingerName());
+			intent.putExtra("singerBg", "null");
+			sendBroadcast(intent);
+		} 
 			
 		/**加载歌词*/
 		private void loadLyric() {																			
 			MainActivity.getLyricView().setLyricInfo(null, 0);
 			MainActivity.getLyricView().setCurrentMp3Info(mp3Info);
-			lyricLoadThread = new LyricLoadThread(mp3Info, PlayerService.this);
+			lyricLoadThread = new LyricLoadThread(mp3Info, PlayService.this);
 			lyricLoadThread.start();		
 			LoadLyricBroadcastReceiver lyricReceiver = new LoadLyricBroadcastReceiver(lyricLoadThread);
 			registerReceiver(lyricReceiver, lyricReceiver.getIntentFilter());
-		}
-		
-		/**加载歌手图片*/
-		private void loadSingerImg() {				
-			loadImage = new LoadImageThread(mp3Info, PlayerService.this, false);
-			loadImage.start();						
-			LoadImageBroadcastReceiver imageReceiver = new LoadImageBroadcastReceiver(loadImage);								
-			registerReceiver(imageReceiver, imageReceiver.getIntentFilter());																						 
 		}
 		
 		/**显示程序任务栏托盘*/
 		private void updateApplicationTrayTitle() {
 			StringBuilder title = new StringBuilder().append(mp3Info.getSingerName())
 					.append(" - ").append(mp3Info.getMp3SimpleName());
-			TrayNotification.addNotification(PlayerService.this, R.drawable.information_icon,
+			TrayNotification.addNotification(PlayService.this, R.drawable.information_icon,
 					title.toString());
 		}
 		
 		/**初始化计时线程*/
 		private void initTime() {
 			if(MusicPlayer.getPlayer() != null)
-				playTime = new PlayTime(MusicPlayer.getPlayer());
+				playTime = new PlayTime(PlayService.this, MusicPlayer.getPlayer());
 		}
 	}
 }

@@ -51,6 +51,6 @@
         <activity android:name="com.music.mp3player.SearchActivity" android:label="@string/app_name" android:screenOrientation="portrait"></activity>
         <activity android:name="com.music.mp3player.SearchHistoryActivity" android:label="@string/app_name" android:screenOrientation="portrait"></activity>
         <service android:name="com.music.mp3player.service.DownloadService"></service> 
-        <service android:name="com.music.mp3player.service.PlayerService"></service> 
+        <service android:name="com.music.mp3player.service.PlayService"></service> 
     </application>
 </manifest>

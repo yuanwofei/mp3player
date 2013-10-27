@@ -1,6 +1,6 @@
 package com.music.mp3player.broadcast;
 
-import com.music.constant.AppConstant;
+import com.music.constant.Music;
 import com.music.lyric.LyricLoadThread;
 import com.music.mp3player.MainActivity;
 
@@ -39,7 +39,7 @@ public class LoadLyricBroadcastReceiver extends BroadcastReceiver  {
 	/**广播过滤器，接收特定的广播*/
 	public IntentFilter getIntentFilter() {
 		IntentFilter intentFilter = new IntentFilter();					
-		intentFilter.addAction(AppConstant.LOAD_LYRIC_OVER);
+		intentFilter.addAction(Music.LOAD_LYRIC_OVER);
 		return intentFilter;
 	}	
 }

@@ -1,7 +1,7 @@
 package com.music.factory.model.xml;
 
 import java.io.InputStream;
-import java.util.List;
+import java.util.ArrayList;
 
 import com.music.factory.model.Mp3Info;
 
@@ -14,7 +14,7 @@ public abstract class AbstractParse{
 		
 	}
 	
-	public List<Mp3Info> parseXML(InputStream xmlContent) {
+	public ArrayList<Mp3Info> parseXML(InputStream xmlContent) {
 		return null;
 	};
 	

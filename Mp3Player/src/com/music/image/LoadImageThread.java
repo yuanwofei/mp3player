@@ -17,7 +17,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.music.constant.AppConstant;
+import com.music.constant.Music;
 import com.music.download.HttpDownloader;
 import com.music.factory.model.ImageInfo;
 import com.music.factory.model.Mp3Info;
@@ -92,7 +92,7 @@ public class LoadImageThread extends Thread {
 		List<ImageInfo> imageInfos = new ArrayList<ImageInfo>();
 		try{  	     	     	     
 		    String data = getOnlinePicData(pageNum, keyWord);
-		    System.out.println(data);
+		    //System.out.println(data);
 			JSONObject jo = new JSONObject(data); 	     
 	         JSONArray jsonArray = jo.optJSONArray("data");
 	         
@@ -196,7 +196,8 @@ public class LoadImageThread extends Thread {
 	/** 发送加载图片完毕广播 */
 	private void sendLoadImageOverBroadcast() {
 		Intent intent = new Intent();
-		intent.setAction(AppConstant.LOAD_SINGER_IMAGE_OVER);
+		intent.setFlags(0x15);
+		intent.setAction(Music.UPDATE_UI_ACTION);		
 		context.sendBroadcast(intent);
 	}
 	

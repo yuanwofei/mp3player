@@ -1,5 +1,6 @@
 package com.music.mp3player;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,13 +23,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.music.R;
-import com.music.constant.AppConstant;
+import com.music.constant.Music;
 import com.music.constant.MusicPlayer;
 import com.music.factory.HttpApiFactory;
 import com.music.factory.model.CopyMp3Infos;
 import com.music.factory.model.Mp3Info;
 import com.music.factory.model.http.CommonHttpApi;
-import com.music.mp3player.service.PlayerService;
+import com.music.mp3player.service.PlayService;
 import com.music.utils.Network;
 
 public class SearchActivity extends ListActivity implements OnScrollListener {
@@ -36,8 +37,8 @@ public class SearchActivity extends ListActivity implements OnScrollListener {
 	private final static int SEARCH_CODE = 1; // 第一次搜索时的识别码
 	private final static int SEARCH_MORE_CODE = 2; // 第二次或第二次以后搜索的识别码
 
-	private List<Mp3Info> mp3Infos = null; // 存放第一次以后搜索数据
-	private List<Mp3Info> more_mp3Infos = null; // 存放第二次或第二次以后搜索数据
+	private ArrayList<Mp3Info> mp3Infos = null; // 存放第一次以后搜索数据
+	private ArrayList<Mp3Info> more_mp3Infos = null; // 存放第二次或第二次以后搜索数据
 	private ListView searchListVive = null;
 	private SearchListAdapter searchListAdapter = null;
 	private SearchBroadcastReceiver searchReceiver = null;
@@ -154,7 +155,7 @@ public class SearchActivity extends ListActivity implements OnScrollListener {
 		/** 广播过滤器，接收特定的广播 */
 		public IntentFilter getIntentFilter() {
 			IntentFilter intentFilter = new IntentFilter();
-			intentFilter.addAction(AppConstant.SEARCH_KEY_WORD_ACTION);
+			intentFilter.addAction(Music.SEARCH_KEY_WORD_ACTION);
 			return intentFilter;
 		}
 	}
@@ -293,8 +294,8 @@ public class SearchActivity extends ListActivity implements OnScrollListener {
 		CopyMp3Infos.setMP3INFOS(mp3Infos);// 为了在不同Activity之间传递链表数据对象
 		MusicPlayer.isFirstPlaying = true;
 		Intent intent = new Intent();
-		intent.setClass(this, PlayerService.class);
-		intent.putExtra("MSG", AppConstant.PlayerMsg.PLAY_MSG);
+		intent.setClass(this, PlayService.class);
+		intent.putExtra("MSG", Music.PlayState.PLAY);
 		intent.putExtra("mp3Info", mp3Infos.get(position - 1));
 		intent.putExtra("position", position - 1);
 		this.startService(intent);

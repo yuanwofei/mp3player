@@ -35,7 +35,7 @@ public class CommonHttpApi extends AbstractHttpApi{
 	}
 
 	@Override
-	public List<Mp3Info> execute(Bundle bundle, Mp3Info mp3Info) {
+	public ArrayList<Mp3Info> execute(Bundle bundle, Mp3Info mp3Info) {
 		AbstractParse parse = ComonXmlParse.factory.getXmlParse();
 		return parse.parseXML(doHttpPost(bundle));
 	}	

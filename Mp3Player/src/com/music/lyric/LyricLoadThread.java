@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
 
-import com.music.constant.AppConstant;
+import com.music.constant.Music;
 import com.music.download.HttpDownloader;
 import com.music.factory.model.Mp3Info;
 import com.music.utils.Network;
@@ -104,7 +104,7 @@ public class LyricLoadThread extends Thread{
 	
 	private void sendLoadlyricOverBroadcast() {
 		Intent intent = new Intent();
-		intent.setAction(AppConstant.LOAD_LYRIC_OVER);
+		intent.setAction(Music.LOAD_LYRIC_OVER);
 		context.sendBroadcast(intent);
 	}
 	

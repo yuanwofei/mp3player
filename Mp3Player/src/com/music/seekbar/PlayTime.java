@@ -1,7 +1,9 @@
 package com.music.seekbar;
 
-import com.music.constant.AppConstant;
+import com.music.constant.Music;
 
+import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Handler;
 
@@ -15,8 +17,11 @@ public class PlayTime {
 	private MediaPlayer player = null;
 	private TimerThread timerThread = null;
 	
-	public PlayTime(MediaPlayer player) {
+	Context context;	
+	
+	public PlayTime(Context context, MediaPlayer player) {
 		this.player = player;
+		this.context = context;
 		this.timerThread = new TimerThread();
 	}
 	
@@ -25,23 +30,18 @@ public class PlayTime {
 		@Override
 		public void run() {			
 			int currentPosition = player.getCurrentPosition();			
-			refreshSeekBar(currentPosition);
-			refreshPlayTime(currentPosition / 1000);			
+			updateSeekBar(currentPosition);
 			handler.post(timerThread);
 		}		
 	}
 	
-	/**更新进度条*/
-	private void refreshSeekBar(int currentPosition) { 	    		
-		int songDuration = player.getDuration();
-		int seekBarMaxValue = AppConstant.PlayComponent.timeSeekBar.getMax(); 		
-		AppConstant.PlayComponent.timeSeekBar.setProgress(currentPosition*seekBarMaxValue/songDuration); 
-	}
-	
-	/**更新播放时间点*/
-	private void refreshPlayTime(int pos) {
-		AppConstant.PlayComponent.countTime.setText(timeConvert(pos));
-		AppConstant.PlayComponent.miniCountTime.setText(timeConvert(pos));
+	private void updateSeekBar(int currentPosition){
+		Intent intent = new Intent();
+		intent.setAction(Music.UPDATE_UI_ACTION);
+		intent.setFlags(0x16);
+		intent.putExtra("processRate", currentPosition / player.getDuration());
+		intent.putExtra("currentMusicTime", timeConvert(currentPosition / 1000));
+		context.sendBroadcast(intent);
 	}
 	
 	/**开始计时*/

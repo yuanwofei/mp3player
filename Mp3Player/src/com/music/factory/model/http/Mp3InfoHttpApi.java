@@ -35,7 +35,7 @@ public class Mp3InfoHttpApi extends AbstractHttpApi{
 	}
 
 	@Override
-	public List<Mp3Info> execute(Bundle bundle, Mp3Info mp3Info) {
+	public ArrayList<Mp3Info> execute(Bundle bundle, Mp3Info mp3Info) {
 		AbstractParse parse = Mp3InfoXmlParse.factory.getXmlParse();
 		parse.parseXml(doHttpPost(bundle), mp3Info);
 		return null;

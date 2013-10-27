@@ -23,14 +23,14 @@ public class ComonXmlParse extends AbstractParse {
 	}
 
 	@Override
-	public List<Mp3Info> parseXML(InputStream xmlContent) {
+	public ArrayList<Mp3Info> parseXML(InputStream xmlContent) {
 		//如何xmlContent为空就返回
 		if(xmlContent == null) {
 			return null;
 		}		
 		//使用DOM（文档对象模型）来解析XML文件
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		List<Mp3Info> mp3Infos = new ArrayList<Mp3Info>();
+		ArrayList<Mp3Info> mp3Infos = new ArrayList<Mp3Info>();
 		try {			
 			Document doc = factory.newDocumentBuilder().parse(xmlContent);
 			NodeList songNodes = doc.getElementsByTagName("song");		

@@ -1,12 +1,8 @@
 package com.music.lyric;
 import java.util.List;
 
-import com.music.constant.MusicPlayer;
-import com.music.factory.model.Mp3Info;
-import com.music.image.LoadImageThread;
-import com.music.mp3player.broadcast.LoadImageBroadcastReceiver;
-
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -17,6 +13,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.widget.TextView;
+
+import com.music.constant.Music;
+import com.music.constant.MusicPlayer;
+import com.music.factory.model.Mp3Info;
 
 public class LyricTextView extends TextView implements OnLongClickListener{
 
@@ -239,11 +239,11 @@ public class LyricTextView extends TextView implements OnLongClickListener{
 	
 	/**加载歌手图片*/
 	private void loadNextSingerImg() {
-		Log.d(TAG, "正在加载下一张图片......");
-		LoadImageThread loadImage = new LoadImageThread(currentMp3Info, context, true);
-		loadImage.start();			
-		LoadImageBroadcastReceiver imageReceiver = new LoadImageBroadcastReceiver(loadImage);								
-		context.registerReceiver(imageReceiver, imageReceiver.getIntentFilter());																						 
+		Log.d(TAG, "正在加载下一张图片......");		
+		Intent intent = new Intent();
+		intent.setAction(Music.UPDATE_UI_ACTION);
+		intent.setFlags(0x17);
+		context.sendBroadcast(intent);
 	}
 	
 	public void setCurrentMp3Info(Mp3Info currentMp3Info) {

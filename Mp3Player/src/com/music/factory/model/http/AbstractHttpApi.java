@@ -3,6 +3,7 @@ package com.music.factory.model.http;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -108,5 +109,5 @@ public abstract class AbstractHttpApi implements HttpApi{
 	}
 	public abstract List<NameValuePair> getNameValuePair(Bundle bundle);
 	
-	public abstract List<Mp3Info> execute(Bundle bundle,Mp3Info mp3Info);
+	public abstract ArrayList<Mp3Info> execute(Bundle bundle,Mp3Info mp3Info);
 }

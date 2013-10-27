@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 import com.music.R;
 
-import com.music.constant.AppConstant;
+import com.music.constant.Music;
 import com.music.database.SearchHistoryDBManager;
 import com.music.factory.model.SearchHistoryInfo;
 
@@ -119,7 +119,7 @@ public class SearchHistoryActivity extends ListActivity{
 	private void sendSearchBroadcast(String keyWord) {
 		Intent intent = new Intent();							
 		intent.putExtra("keyWord", keyWord);
-		intent.setAction(AppConstant.SEARCH_KEY_WORD_ACTION);
+		intent.setAction(Music.SEARCH_KEY_WORD_ACTION);
 		sendBroadcast(intent);
 	}
 	

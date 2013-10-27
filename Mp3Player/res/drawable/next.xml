@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-	<item
+	<item 
 		android:state_pressed="false"
 		android:drawable="@drawable/next_normal">
  	</item>
@@ -8,8 +8,9 @@
 		android:state_pressed="true"
 		android:drawable="@drawable/next_pressed">
  	</item>
-	<item
-		android:state_window_focused="false"
+	<item 
+		android:state_window_focused="false" 
 		android:drawable="@drawable/next_normal">
+		
  	</item>
 </selector>

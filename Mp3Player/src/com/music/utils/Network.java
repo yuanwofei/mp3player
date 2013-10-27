@@ -16,7 +16,8 @@ public class Network {
 	 * @param context
 	 * @return 返回网络的类型名
 	 */
-	@SuppressLint("DefaultLocale") public static String netType(Context context) {      
+	@SuppressLint("DefaultLocale") 
+	public static String netType(Context context) {      
         NetworkInfo info = getNetworkInfo(context);
         String typeName = info.getTypeName();
         if (typeName.equalsIgnoreCase("wifi")) {

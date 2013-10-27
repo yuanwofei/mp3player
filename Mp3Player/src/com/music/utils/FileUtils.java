@@ -132,12 +132,12 @@ public class FileUtils {
 		}
 	}
 	
-	public static List<Mp3Info> getMediaStoreMp3Infos(Context content){
+	public static ArrayList<Mp3Info> getMediaStoreMp3Infos(Context content){
 		//更新系统歌曲数据库
 		content.sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" + 
 				Environment.getExternalStorageDirectory().getAbsolutePath())));
 		
-		List<Mp3Info> mp3Infos = new ArrayList<Mp3Info>();
+		ArrayList<Mp3Info> mp3Infos = new ArrayList<Mp3Info>();
 		int id = 0;
 		String[] projections = {
 				MediaStore.Audio.Media.ARTIST,        //歌手

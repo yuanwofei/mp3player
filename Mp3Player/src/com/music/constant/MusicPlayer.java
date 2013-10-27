@@ -13,7 +13,6 @@ public class MusicPlayer{
 	}
 	
 	public static void setPlayer(MediaPlayer player) {		
-		
 		MusicPlayer.player = player;
 	}		
 }
