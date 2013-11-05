@@ -7,21 +7,25 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.WindowManager;
 
 /**歌手图片处理类*/
 public class BitmapHandle {	
 	
 	/**颜色矩阵*/
-	private ColorMatrix colorMatrix = null;		
+	private ColorMatrix colorMatrix = null;	
 	
 	/**lightValue的值范围是0-2f，其中1表示正常，如果小于1f，图片将变暗，反之亦然*/	 
 	private float lightValue = 0.64f;
 	
 	/**设备的屏幕宽度*/
 	private int deviceWidth; 
+	
 	/**设备的屏幕高度*/
 	private int deviceHeight;
+	
 	/**设备的比例（高/宽）*/
 	private float deviceRatio;
 	
@@ -30,8 +34,13 @@ public class BitmapHandle {
 		
 	public BitmapHandle(Context context) {
 		WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-		deviceWidth = manager.getDefaultDisplay().getWidth();
-		deviceHeight = manager.getDefaultDisplay().getHeight();
+		Display display = manager.getDefaultDisplay();
+		DisplayMetrics metrics = new DisplayMetrics();
+		display.getMetrics(metrics);
+		
+		deviceWidth = metrics.widthPixels;
+		deviceHeight = metrics.heightPixels;
+		
 		deviceRatio = (float)deviceHeight / deviceWidth;
 	}
 	

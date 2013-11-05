@@ -28,10 +28,12 @@ public class PlayTime {
 	/**歌曲播放计时的线程,注意这个线程不是一个新的线程，它是UI的主线程*/
 	private class TimerThread extends Thread {
 		@Override
-		public void run() {			
-			int currentPosition = player.getCurrentPosition();			
-			updateSeekBar(currentPosition);
-			handler.post(timerThread);
+		public void run() {
+			if (player != null) {
+				int currentPosition = player.getCurrentPosition();			
+				updateSeekBar(currentPosition);
+				handler.post(timerThread);
+			}		
 		}		
 	}
 	
@@ -39,7 +41,7 @@ public class PlayTime {
 		Intent intent = new Intent();
 		intent.setAction(Music.UPDATE_UI_ACTION);
 		intent.setFlags(0x16);
-		intent.putExtra("processRate", currentPosition / player.getDuration());
+		intent.putExtra("processRate", (float)currentPosition / player.getDuration());
 		intent.putExtra("currentMusicTime", timeConvert(currentPosition / 1000));
 		context.sendBroadcast(intent);
 	}

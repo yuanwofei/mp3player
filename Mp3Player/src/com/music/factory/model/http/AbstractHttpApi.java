@@ -24,12 +24,11 @@ import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
-
-import com.music.factory.model.Mp3Info;
-import com.music.factory.model.xml.AbstractParse;
-
+import org.apache.http.protocol.HTTP;
 
 import android.os.Bundle;
+
+import com.music.factory.model.Mp3Info;
 
 public abstract class AbstractHttpApi implements HttpApi{
 	
@@ -46,7 +45,7 @@ public abstract class AbstractHttpApi implements HttpApi{
 	public HttpPost createHttpPost(String serverUrl, List<NameValuePair> nameValuePair) {
 		HttpPost httppost = new HttpPost(serverUrl);
 		try {
-			httppost.setEntity(new UrlEncodedFormEntity(nameValuePair, "UTF-8"));
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePair, HTTP.UTF_8));
 		}
 		catch (UnsupportedEncodingException unsupportedencodingexception) {
 			System.out.println("HttpApi½âÂë³ö´í----->unsupportedencodingexception");
@@ -55,11 +54,11 @@ public abstract class AbstractHttpApi implements HttpApi{
 	}
 
 	public InputStream doHttpPost(Bundle bundle) {
-		HttpPost httpRequest = createHttpPost(SERVER_BASE_URL, getNameValuePair(bundle));
 		HttpClient httpClient = createHttpClient();
+		HttpPost httpRequest = createHttpPost(SERVER_BASE_URL, getNameValuePair(bundle));		
 		HttpClientParams.setCookiePolicy(httpClient.getParams(), CookiePolicy.BROWSER_COMPATIBILITY);
 		HttpResponse response = executeHttpRequest(httpRequest, httpClient);	
-		return getInputStream(response);	
+		return getInputStream(response);
 	}	
 	
 	public DefaultHttpClient createHttpClient() {

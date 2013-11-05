@@ -59,6 +59,7 @@ public class LocalMp3List{
 					intent.setAction(Music.PLAY_MUSIC_ACTION);
 					context.sendBroadcast(intent);
 				} else {
+					
 					MainActivity.setStartedPlayService(true);
 					intent.setClass(context, PlayService.class);
 					context.startService(intent);					

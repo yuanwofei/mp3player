@@ -126,6 +126,8 @@ public class MainActivity extends TabActivity implements OnClickListener{
 				 singerBg.setImageBitmap(null);
 				 miniSingerBg.setImageBitmap(null);
 				 
+				 mp3Infos = CopyMp3Infos.getMP3INFOS();
+				 mp3Info = mp3Infos.get(index);
 				 mLoadImageThread = new LoadImageThread(mp3Info, MainActivity.this, false);
 				 mLoadImageThread.start();
 				 break;				 
@@ -143,14 +145,16 @@ public class MainActivity extends TabActivity implements OnClickListener{
 				 break;	
 				 
 			case 0x16:
-				 int processRate = intent.getIntExtra("processRate", 1);
+				 float processRate = intent.getFloatExtra("processRate", 1f);
 				 String currentMusicTime = intent.getStringExtra("currentMusicTime");
-				 timeSeekBar.setProgress(processRate * timeSeekBar.getMax());
+				 timeSeekBar.setProgress((int)(processRate * timeSeekBar.getMax()));
 				 
 				 countTime.setText(currentMusicTime);
 				 miniCountTime.setText(currentMusicTime);
 				 break;
 			case 0x17:
+				mp3Infos = CopyMp3Infos.getMP3INFOS();
+				mp3Info = mp3Infos.get(index);
 				mLoadImageThread = new LoadImageThread(mp3Info, MainActivity.this, true);
 				mLoadImageThread.start();
 			}
@@ -196,15 +200,24 @@ public class MainActivity extends TabActivity implements OnClickListener{
 
 	@Override	
 	public void onClick(View v) {
-		mp3Infos = CopyMp3Infos.getMP3INFOS();
-		if(v.getId() == R.id.play || v.getId() == R.id.mini_play) {
-			setIntent(Music.PlayState.PLAY);
-		} else if (v.getId() == R.id.prev || v.getId() == R.id.mini_prev) {
-			index = getPlayMode().preSongIndex(index, mp3Infos.size());		
-			setIntent(Music.PlayState.PRE);
-		} else if (v.getId() == R.id.next || v.getId() == R.id.mini_next) {
-			index = getPlayMode().nextSongIndex(index, mp3Infos.size());
-			setIntent(Music.PlayState.NEXT);
+		mp3Infos = CopyMp3Infos.getMP3INFOS();		
+		switch(v.getId()) {
+			case R.id.mini_play :
+			case R.id.play :
+				 setIntent(Music.PlayState.PLAY);
+				 break;
+				 
+			case R.id.mini_prev :
+			case R.id.prev :
+				 index = getPlayMode().preSongIndex(index, mp3Infos.size());		
+				 setIntent(Music.PlayState.PRE);
+				 break;
+				 
+			case R.id.mini_next :
+			case R.id.next :
+				 index = getPlayMode().nextSongIndex(index, mp3Infos.size());
+				 setIntent(Music.PlayState.NEXT);
+				 break;
 		}
 	}
 	

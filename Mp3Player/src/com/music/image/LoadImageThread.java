@@ -94,20 +94,23 @@ public class LoadImageThread extends Thread {
 		    String data = getOnlinePicData(pageNum, keyWord);
 		    //System.out.println(data);
 			JSONObject jo = new JSONObject(data); 	     
-	         JSONArray jsonArray = jo.optJSONArray("data");
-	         
-	         for (int i = 0; i < jsonArray.length(); ++i) {        	        	 
-	        	 int width = (Integer)jsonArray.getJSONObject(i).get("width");
-	        	 int height = (Integer)jsonArray.getJSONObject(i).get("height");
-	        	 if(width >= WIDTH && height >= HEIGHT) {
-	        		 if((float)height/width >= SCREEN_RATIO) {
-		        		 ImageInfo imageInfo = new ImageInfo();	 
-		        		 imageInfo.setPicUrl(jsonArray.getJSONObject(i).get("objURL").toString());
-		        		 imageInfos.add(imageInfo);
-	        		 }		        		 
-	        	 }	        	                	 
-	         }	         			    
-		 } catch (Exception e) {			 
+	        JSONArray jsonArray = jo.optJSONArray("data");
+	        
+	        for (int i = 0; i < jsonArray.length(); ++i) {        	        	 
+	       	
+	        	int width = jsonArray.getJSONObject(i).getInt("width");
+	        	int height = jsonArray.getJSONObject(i).getInt("height");
+	        	
+	        	if(width >= WIDTH && height >= HEIGHT) {
+	        		if((float)height/width >= SCREEN_RATIO) {
+		        		ImageInfo imageInfo = new ImageInfo();
+		        		imageInfo.setPicUrl(jsonArray.getJSONObject(i).getString("objURL"));
+		        		imageInfos.add(imageInfo);
+	        		}		        		 
+	        	}	        	                	 
+	        }	         			    
+		 } catch (Exception e) {
+			 e.printStackTrace();
 		 }  
 		 return imageInfos;		
 	}
@@ -170,18 +173,7 @@ public class LoadImageThread extends Thread {
 			if(sourceBitmap != null) {
 				flag = true;
 				System.out.println("已找到歌手图片");
-			}
-			
-			/*for (int i = 0; i < imageInfos.size(); i++) {
-				String picUrl = imageInfos.get(i).getPicUrl();			
-				sourceBitmap = BitmapFactory.decodeStream(
-						new HttpDownloader().getInputStreamFromUrl(picUrl), null, setBitmapFactoryOptions());																
-				if(sourceBitmap != null) {
-					flag = true;
-					System.out.println("已找到歌手图片");
-					break;
-				}
-			}*/										
+			}									
 			sourceBitmap = picHandle.clipBigPic(sourceBitmap);
 			saveSingerPic(sourceBitmap);
 		}		

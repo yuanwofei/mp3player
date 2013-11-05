@@ -6,7 +6,8 @@
     <RelativeLayout
 	    android:layout_width="fill_parent" 
 	    android:layout_height="fill_parent">
-	    <include layout="@layout/play_mini_control_bar" 
+	    <include 
+	        layout="@layout/play_mini_control_bar" 
 	        android:id="@+id/mini_play_control"/>  	              
 	    <TabHost android:id="@android:id/tabhost" 
 		      android:layout_width="fill_parent" 

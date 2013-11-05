@@ -47,8 +47,6 @@ public class PlayService extends Service{
 	
 	PlayServiceReceiver mReceiver;
 	
-	//MediaPlayer mPlayer;
-	
 	@Override
 	public IBinder onBind(Intent intent) {
 		return null;
@@ -79,7 +77,6 @@ public class PlayService extends Service{
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		//mPlayer = new MediaPlayer();
 		mReceiver = new PlayServiceReceiver();
 		registerReceiver(new PlayServiceReceiver(), new IntentFilter(Music.PLAY_MUSIC_ACTION));
 	}

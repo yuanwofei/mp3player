@@ -28,9 +28,10 @@ public class HttpDownloader {
 		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		String temp = null;
 		sb = new StringBuilder();
-			while ((temp = br.readLine()) != null)
-				sb.append(temp).append("\n");
-			br.close();
+		while ((temp = br.readLine()) != null)
+			sb.append(temp).append("\n");
+		br.close();
+		conn.disconnect();
 		} catch (IOException e) {
 			return null;
 		}		
@@ -99,12 +100,10 @@ public class HttpDownloader {
 			HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
 			urlConn.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:8.0.1) Gecko/20100101 Firefox/8.0.1");
 			urlConn.addRequestProperty("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-			inputStream = urlConn.getInputStream();
+			inputStream = urlConn.getInputStream();			
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}				
 		return inputStream;
