@@ -70,7 +70,7 @@
 		    android:singleLine="true" 
 			android:ellipsize="marquee"  			
 			android:marqueeRepeatLimit="marquee_forever"		
-			android:layout_marginTop="-5dip"
+			android:layout_marginTop="-4dip"
 		    android:textSize="15sp"
 		    android:textColor="@color/white"/>
         <TextView android:id="@+id/mini_singer_name"

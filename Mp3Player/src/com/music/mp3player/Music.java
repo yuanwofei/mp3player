@@ -1,8 +1,8 @@
-package com.music.factory.model;
+package com.music.mp3player;
 
 import java.io.Serializable;
 
-public class Mp3Info implements Serializable{
+public class Music implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -48,7 +48,7 @@ public class Mp3Info implements Serializable{
 	private String singerMediumImageURL = null;
 	private String singerSmallImageURL = null;	
 		
-	public Mp3Info() {
+	public Music() {
 
 	}
 	

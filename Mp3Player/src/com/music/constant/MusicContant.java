@@ -1,32 +1,59 @@
 package com.music.constant;
 
-public interface Music {
+public interface MusicContant {
 	
 	public final static class PlayState {
 		/**代表开始播放*/
-		public final static int PLAY = 1;
+		public final static int INIT = 0x11;
+		
+		/**代表开始播放*/
+		public final static int PLAY = 0x12;
 		
 		/**代表暂停播放*/
-		public final static int PAUSE = 2;
+		public final static int PAUSE = 0x13;
 		
 		/**代表停止播放*/
-		public final static int STOP = 3;
+		public final static int STOP = 0x14;
 		
 		/**代表播放前一首歌曲*/
-		public final static int PRE = 4;
+		public final static int PREV = 0x15;
 		
 		/**代表播放后一首歌曲*/
-		public final static int NEXT = 5;
+		public final static int NEXT = 0x16;
 	}
 	
 	public final static class PlayMode {	
+	
 		/**代表循环播放*/
-		public final static int SEQUENCE_MODE = 1;
+		public final static int CYCLE = 0x11;
+		
+		/**代表列表播放*/
+		public final static int SEQUENCE = 0x12;	
+		
 		/**代表随机播放*/
-		public final static int RANDOM_MODE = 2;
+		public final static int SINGLE = 0x13;
+		
 		/**代表单曲循环播放*/
-		public final static int SINGLE_MODE = 3;
+		public final static int RANDOM = 0x14;
 	}
+	
+	public final static class MusicList {
+		public final static int INSERT_MUSICS = 0x11;
+		public final static int UPDATE_MUSICS = 0x12;
+	}
+	
+	public final static String MUSIC = "com.music.MUSIC";
+	
+	public final static String MUSICS = "com.music.MUSICS";
+	
+	
+	public final static String PLAY_STATE = "com.music.PLAY_STATE";
+	
+	
+	public final static String PLAY_MODE = "com.music.PLAY_MODE";
+	
+	
+	public final static String CURRENT_MUSIC_INDEX = "com.music.CURRENT_MUSIC_INDEX";
 	
 	/***/
 	public final static String LRC_MESSAGE_ACTION = "com.music.LRC_MESSAGE.ACTION";

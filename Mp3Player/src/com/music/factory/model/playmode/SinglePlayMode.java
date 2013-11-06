@@ -8,12 +8,12 @@ public class SinglePlayMode extends AbstractPlayMode {
 	}
 
 	@Override
-	public int preSongIndex(int index, int size) {
+	public int prevIndex(int index, int size) {
 		return index;
 	}
 
 	@Override
-	public int nextSongIndex(int index, int size) {
+	public int nextIndex(int index, int size) {
 		return index;
 	}
 	

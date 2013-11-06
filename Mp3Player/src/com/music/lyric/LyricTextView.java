@@ -14,9 +14,9 @@ import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.widget.TextView;
 
-import com.music.constant.Music;
+import com.music.constant.MusicContant;
 import com.music.constant.MusicPlayer;
-import com.music.factory.model.Mp3Info;
+import com.music.mp3player.Music;
 
 public class LyricTextView extends TextView implements OnLongClickListener{
 
@@ -44,7 +44,7 @@ public class LyricTextView extends TextView implements OnLongClickListener{
 	private LyricUpdateThread lyricUpdateThread = null;
 	public boolean isPauseRefreshLyric = false;
 	
-	private Mp3Info currentMp3Info;
+	private Music currentMp3Info;
 
 	Context context;
 	
@@ -241,12 +241,12 @@ public class LyricTextView extends TextView implements OnLongClickListener{
 	private void loadNextSingerImg() {
 		Log.d(TAG, "正在加载下一张图片......");		
 		Intent intent = new Intent();
-		intent.setAction(Music.UPDATE_UI_ACTION);
+		intent.setAction(MusicContant.UPDATE_UI_ACTION);
 		intent.setFlags(0x17);
 		context.sendBroadcast(intent);
 	}
 	
-	public void setCurrentMp3Info(Mp3Info currentMp3Info) {
+	public void setCurrentMp3Info(Music currentMp3Info) {
 		this.currentMp3Info = currentMp3Info;
 	}
 

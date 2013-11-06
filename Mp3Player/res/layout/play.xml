@@ -64,7 +64,7 @@
    		    android:layout_height="wrap_content" 
    		    android:layout_marginRight="5dip"
 	        android:background="@android:color/transparent"
-	        android:src="@drawable/sequence_mode"
+	        android:src="@drawable/playmode_1"
 	        android:layout_centerVertical="true"/>  
         <ImageButton android:id="@+id/prev"        
    		    android:layout_width="wrap_content"

@@ -3,18 +3,18 @@ package com.music.factory.model.xml;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import com.music.factory.model.Mp3Info;
+import com.music.mp3player.Music;
 
 
 /**解析的抽象类
  * @param <E>*/
 public abstract class AbstractParse{
 
-	public void parseXml(InputStream xmlContent, Mp3Info mp3Info) {
+	public void parseXml(InputStream xmlContent, Music mp3Info) {
 		
 	}
 	
-	public ArrayList<Mp3Info> parseXML(InputStream xmlContent) {
+	public ArrayList<Music> parseXML(InputStream xmlContent) {
 		return null;
 	};
 	

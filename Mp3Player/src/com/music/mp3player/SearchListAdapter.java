@@ -2,7 +2,6 @@ package com.music.mp3player;
 
 import java.util.List;
 
-import com.music.factory.model.Mp3Info;
 import com.music.mp3player.service.DownloadService;
 
 import com.music.R;
@@ -25,11 +24,11 @@ public class SearchListAdapter extends BaseAdapter{
 	/** ’≤ÿ±Í÷æ*/
 	private final static int COLLECTION_LAYOUT = 3;
 	
-	private List<Mp3Info> mp3Infos = null;
+	private List<Music> mp3Infos = null;
 	private LayoutInflater inflater = null;
 	private Context context = null;
 	
-	public SearchListAdapter(Context context, List<Mp3Info> mp3Infos, View selectView) {
+	public SearchListAdapter(Context context, List<Music> mp3Infos, View selectView) {
 		this.mp3Infos = mp3Infos;
 		this.context = context;
 		this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);        
@@ -50,7 +49,7 @@ public class SearchListAdapter extends BaseAdapter{
 		return position;
 	}
 
-	public void addItem(Mp3Info mp3Info){
+	public void addItem(Music mp3Info){
 		mp3Infos.add(mp3Info);
 	}
 	

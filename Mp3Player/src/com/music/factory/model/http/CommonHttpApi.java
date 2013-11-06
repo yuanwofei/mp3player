@@ -7,9 +7,9 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import com.music.factory.HttpApiFactory;
-import com.music.factory.model.Mp3Info;
 import com.music.factory.model.xml.AbstractParse;
 import com.music.factory.model.xml.ComonXmlParse;
+import com.music.mp3player.Music;
 
 import android.os.Bundle;
 
@@ -35,7 +35,7 @@ public class CommonHttpApi extends AbstractHttpApi{
 	}
 
 	@Override
-	public ArrayList<Mp3Info> execute(Bundle bundle, Mp3Info mp3Info) {
+	public ArrayList<Music> execute(Bundle bundle, Music mp3Info) {
 		AbstractParse parse = ComonXmlParse.factory.getXmlParse();
 		return parse.parseXML(doHttpPost(bundle));
 	}	

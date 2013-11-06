@@ -12,13 +12,13 @@ public class RandomPlayMode extends AbstractPlayMode {
 	}
 
 	@Override
-	public int preSongIndex(int index, int size) {
+	public int prevIndex(int index, int size) {
 		//Math.random()*(b-a)+a从a - b之间随机选取一个数
 		return (int) (Math.random()*(size - 1));
 	}
 
 	@Override
-	public int nextSongIndex(int index, int size) {
+	public int nextIndex(int index, int size) {
 		return (int) (Math.random()*(size - 1));
 	}
 	

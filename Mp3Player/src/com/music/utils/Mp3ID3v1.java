@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
 
-import com.music.factory.model.Mp3Info;
+import com.music.mp3player.Music;
 
 
 public class Mp3ID3v1 {
@@ -32,13 +32,13 @@ public class Mp3ID3v1 {
 		return data128;		
 	}	
 	
-	public static Mp3Info Mp3ID3v1Info(String filePath) {
-		Mp3Info mp3Info = null;
+	public static Music Mp3ID3v1Info(String filePath) {
+		Music mp3Info = null;
 		byte[] data128 = getMp3ID3v1Data(filePath);
 		String tag = new String(data128, 0, 3);
 		if(tag.equalsIgnoreCase("TAG")) {
 			isID3v1 = true; //´æÔÚ
-			mp3Info = new Mp3Info();
+			mp3Info = new Music();
 			try {
 				mp3Info.setMp3SimpleName(new String(data128, 3, 30, "GB2312").trim());
 				mp3Info.setMp3Name(new String(data128, 3, 30, "GB2312").trim() + "mp3");

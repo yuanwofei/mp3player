@@ -2,8 +2,8 @@ package com.music.mp3player.service;
 
 import com.music.download.HttpDownloader;
 import com.music.factory.HttpApiFactory;
-import com.music.factory.model.Mp3Info;
 import com.music.factory.model.http.Mp3InfoHttpApi;
+import com.music.mp3player.Music;
 import com.music.notification.DownloadNotification;
 import com.music.utils.FileUtils;
 
@@ -15,7 +15,7 @@ import android.os.Environment;
 import android.os.IBinder;
 
 public class DownloadService extends Service{
-	private Mp3Info mp3Info = null;
+	private Music mp3Info = null;
 	private HttpDownloader downloader = new HttpDownloader();	
 	@Override
 	public IBinder onBind(Intent arg0) {
@@ -24,7 +24,7 @@ public class DownloadService extends Service{
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		mp3Info = (Mp3Info) intent.getSerializableExtra("mp3Info");			
+		mp3Info = (Music) intent.getSerializableExtra("mp3Info");			
 		startDownload();
 		return super.onStartCommand(intent, flags, startId);
 	}

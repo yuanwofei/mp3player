@@ -5,9 +5,6 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.List;
-
-import com.music.factory.model.Mp3Info;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +12,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+
+import com.music.mp3player.Music;
 
 public class FileUtils {
 	
@@ -127,17 +126,17 @@ public class FileUtils {
 			if(file[i].isDirectory()) {				
 				scanSong(file[i].getAbsolutePath());
 			} else {			
-				Mp3Info mp3Info = Mp3ID3v1.Mp3ID3v1Info(file[i].getAbsolutePath());
+				Music mp3Info = Mp3ID3v1.Mp3ID3v1Info(file[i].getAbsolutePath());
 			}
 		}
 	}
 	
-	public static ArrayList<Mp3Info> getMediaStoreMp3Infos(Context content){
+	public static ArrayList<Music> getMusics(Context content){
 		//更新系统歌曲数据库
 		content.sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" + 
 				Environment.getExternalStorageDirectory().getAbsolutePath())));
 		
-		ArrayList<Mp3Info> mp3Infos = new ArrayList<Mp3Info>();
+		ArrayList<Music> mp3Infos = new ArrayList<Music>();
 		int id = 0;
 		String[] projections = {
 				MediaStore.Audio.Media.ARTIST,        //歌手
@@ -155,7 +154,7 @@ public class FileUtils {
              MediaStore.Audio.Media.SIZE + " >= ? and " +
              MediaStore.Audio.Media.DISPLAY_NAME + " like ?" , selections, null);
 		while (cursor != null && cursor.moveToNext()) {//MediaStore.Audio.Media.IS_MUSIC + " = 1"			
-			Mp3Info mp3Info = new Mp3Info();		
+			Music mp3Info = new Music();		
 			
 			mp3Info.setId(id++);
 			mp3Info.setMp3Time(timeConvert(cursor.getString(2)));

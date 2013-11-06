@@ -3,6 +3,8 @@ package com.music.mp3player;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
@@ -23,11 +25,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.music.R;
-import com.music.constant.Music;
+import com.music.constant.MusicContant;
 import com.music.constant.MusicPlayer;
 import com.music.factory.HttpApiFactory;
-import com.music.factory.model.CopyMp3Infos;
-import com.music.factory.model.Mp3Info;
 import com.music.factory.model.http.CommonHttpApi;
 import com.music.mp3player.service.PlayService;
 import com.music.utils.Network;
@@ -37,8 +37,8 @@ public class SearchActivity extends ListActivity implements OnScrollListener {
 	private final static int SEARCH_CODE = 1; // 第一次搜索时的识别码
 	private final static int SEARCH_MORE_CODE = 2; // 第二次或第二次以后搜索的识别码
 
-	private ArrayList<Mp3Info> mp3Infos = null; // 存放第一次以后搜索数据
-	private ArrayList<Mp3Info> more_mp3Infos = null; // 存放第二次或第二次以后搜索数据
+	private ArrayList<Music> mMusics = null; // 存放第一次以后搜索数据
+	private ArrayList<Music> mMoreMusics = null; // 存放第二次或第二次以后搜索数据
 	private ListView searchListVive = null;
 	private SearchListAdapter searchListAdapter = null;
 	private SearchBroadcastReceiver searchReceiver = null;
@@ -58,6 +58,9 @@ public class SearchActivity extends ListActivity implements OnScrollListener {
 	private int page_size = 30;// 一个xml文件包含30首歌曲
 	private String keyWord = null;// 搜索关键词
 
+	boolean isPlaying = false;
+	boolean isCanBackToDesktop = false; 
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
@@ -155,7 +158,7 @@ public class SearchActivity extends ListActivity implements OnScrollListener {
 		/** 广播过滤器，接收特定的广播 */
 		public IntentFilter getIntentFilter() {
 			IntentFilter intentFilter = new IntentFilter();
-			intentFilter.addAction(Music.SEARCH_KEY_WORD_ACTION);
+			intentFilter.addAction(MusicContant.SEARCH_KEY_WORD_ACTION);
 			return intentFilter;
 		}
 	}
@@ -171,22 +174,20 @@ public class SearchActivity extends ListActivity implements OnScrollListener {
 		bundle.putString("page_no", page_no);
 		bundle.putString("page_size", page_size);
 		bundle.putString("keyWord", keyWord);
-		mp3Infos = factory.getHttpApi().execute(bundle, null);
-		//OnlineFactory factory = new CommonSearchFactory(page_no, page_size,keyWord);
-		//mp3Infos = factory.execute();
+		mMusics = factory.getHttpApi().execute(bundle, null);
 	}
 
 	private void updateList() {
-		if (mp3Infos != null && !mp3Infos.isEmpty()) {
-			initAdapter(mp3Infos); // 初始化SearchListAdapter,把Mp3Info中的数据添加在List中
+		if (mMusics != null && !mMusics.isEmpty()) {
+			initAdapter(mMusics); // 初始化SearchListAdapter,把Mp3Info中的数据添加在List中
 
 			// 显示搜索结果
 			mp3NumbersTextView.setVisibility(View.VISIBLE);
-			mp3NumbersTextView.setText("找到相关结果 " + mp3Infos.get(0).getMp3Sum()
+			mp3NumbersTextView.setText("找到相关结果 " + mMusics.get(0).getMp3Sum()
 					+ " 篇");
 
 			// 判断是否还有更多搜索，来设置listview底部视图是否显示
-			if (searchListAdapter.getCount() < Integer.parseInt(mp3Infos.get(0)
+			if (searchListAdapter.getCount() < Integer.parseInt(mMusics.get(0)
 					.getMp3Sum())) {
 				searchListVive.removeFooterView(searchMoreView);
 				searchListVive.addFooterView(searchMoreView);
@@ -201,10 +202,10 @@ public class SearchActivity extends ListActivity implements OnScrollListener {
 	/**
 	 * 第一次搜索后，初始化SearchListAdapter,把Mp3Info中的数据添加在List中
 	 * 
-	 * @param mp3Infos
+	 * @param mMusics
 	 */
-	private void initAdapter(List<Mp3Info> mp3Infos) {
-		searchListAdapter = new SearchListAdapter(this, mp3Infos, selectView);
+	private void initAdapter(List<Music> mMusics) {
+		searchListAdapter = new SearchListAdapter(this, mMusics, selectView);
 		this.setListAdapter(searchListAdapter);
 	}
 
@@ -217,7 +218,7 @@ public class SearchActivity extends ListActivity implements OnScrollListener {
 		bundle.putString("page_no", ++page_no + "");
 		bundle.putString("page_size", page_size + "");
 		bundle.putString("keyWord", keyWord);
-		more_mp3Infos = factory.getHttpApi().execute(bundle, null);
+		mMoreMusics = factory.getHttpApi().execute(bundle, null);
 	}
 
 	/**
@@ -233,20 +234,24 @@ public class SearchActivity extends ListActivity implements OnScrollListener {
 
 	private void updateMoreList() {
 		// 往searchlistAdapter添加搜索结果
-		for (Iterator<Mp3Info> iterator = more_mp3Infos.iterator(); iterator
+		for (Iterator<Music> iterator = mMoreMusics.iterator(); iterator
 				.hasNext();) {
-			Mp3Info mp3Info = iterator.next();
+			Music mp3Info = iterator.next();
 			searchListAdapter.addItem(mp3Info);
 		}
 		search_more_text.setText("更多");
 		searchListAdapter.notifyDataSetChanged(); // 数据集变化后,通知earchlistAdapter刷新列表项
 		searchListVive.setSelection(visibleLastIndex - visibleItemCount + 1); // 设置选中项
 
-		mp3Infos.addAll(more_mp3Infos);
-		CopyMp3Infos.setMP3INFOS(mp3Infos);
+		mMusics.addAll(mMoreMusics);
+		
+		Intent intent = new Intent();			
+		intent.setClass(SearchActivity.this, PlayService.class);
+		intent.addFlags(MusicContant.MusicList.INSERT_MUSICS);
+		intent.putExtra(MusicContant.MUSICS, mMoreMusics);
+		startService(intent);
 
-		if (searchListAdapter.getCount() == Integer.parseInt(mp3Infos.get(0)
-				.getMp3Sum())) {
+		if (searchListAdapter.getCount() == Integer.parseInt(mMusics.get(0).getMp3Sum())) {
 			searchListVive.removeFooterView(searchMoreView);
 		}
 	}
@@ -266,14 +271,25 @@ public class SearchActivity extends ListActivity implements OnScrollListener {
 
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			Intent intent = new Intent(Intent.ACTION_MAIN); 
-	        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);// 注意  
-	        intent.addCategory(Intent.CATEGORY_HOME); 
-	        startActivity(intent); 
-	        return true; 
+		if (!isCanBackToDesktop) {
+			Toast.makeText(this, "再按一次返回到桌面", Toast.LENGTH_SHORT).show();
+			isCanBackToDesktop = true;
+			
+			final Timer timer = new Timer(); //如果用户在两秒之内没有按两下返回键，就重置
+			timer.schedule(new TimerTask() {						
+				@Override
+				public void run() {
+					isCanBackToDesktop = false;
+					timer.cancel();
+				}
+			}, 3000);
+			return true;
 		}
-		return super.onKeyUp(keyCode, event);
+		Intent intent = new Intent(Intent.ACTION_MAIN); 
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);// 注意  
+        intent.addCategory(Intent.CATEGORY_HOME); 
+        startActivity(intent); 
+        return true; 
 	}
 
 	/**
@@ -287,18 +303,24 @@ public class SearchActivity extends ListActivity implements OnScrollListener {
 
 	/**
 	 * 点击列表项的相关操作
+	 * list前面加一个preView, index从1开始，不是从0开始
 	 */
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
-		// 根据用户点击的列表当中的位置来得到mp3Info对象
-		CopyMp3Infos.setMP3INFOS(mp3Infos);// 为了在不同Activity之间传递链表数据对象
-		MusicPlayer.isFirstPlaying = true;
-		Intent intent = new Intent();
-		intent.setClass(this, PlayService.class);
-		intent.putExtra("MSG", Music.PlayState.PLAY);
-		intent.putExtra("mp3Info", mp3Infos.get(position - 1));
-		intent.putExtra("position", position - 1);
-		this.startService(intent);
+	protected void onListItemClick(ListView l, View v, int index, long id) {
+		super.onListItemClick(l, v, index, id);	
+		
+		if(mMusics != null) {		
+			MusicPlayer.isFirstPlaying =true;
+			
+			Intent intent = new Intent();			
+			intent.putExtra(MusicContant.PLAY_STATE, MusicContant.PlayState.PLAY);
+			intent.putExtra(MusicContant.CURRENT_MUSIC_INDEX, index - 1); 
+			intent.setClass(this, PlayService.class);
+			if (!isPlaying) {		
+				intent.addFlags(MusicContant.MusicList.UPDATE_MUSICS);
+				intent.putExtra(MusicContant.MUSICS, mMusics);	
+			}
+			startService(intent);	
+		}
 	}
 
 	private class SearchAsyncTask extends AsyncTask<String, String, String> {

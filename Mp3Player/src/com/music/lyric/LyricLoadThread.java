@@ -6,9 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
 
-import com.music.constant.Music;
+import com.music.constant.MusicContant;
 import com.music.download.HttpDownloader;
-import com.music.factory.model.Mp3Info;
+import com.music.mp3player.Music;
 import com.music.utils.Network;
 
 import android.content.Context;
@@ -18,12 +18,12 @@ import android.widget.Toast;
 public class LyricLoadThread extends Thread{
 
 	private InputStream inputStream = null;
-	private Mp3Info mp3Info = null;
+	private Music mp3Info = null;
 	private String charset = null;
 	private List<LyricInfo> lyricInfo = null;
 	private Context context = null;
 	
-	public LyricLoadThread(Mp3Info mp3Info, Context context) {
+	public LyricLoadThread(Music mp3Info, Context context) {
 		this.mp3Info = mp3Info;
 		this.context = context;
 	}
@@ -104,7 +104,7 @@ public class LyricLoadThread extends Thread{
 	
 	private void sendLoadlyricOverBroadcast() {
 		Intent intent = new Intent();
-		intent.setAction(Music.LOAD_LYRIC_OVER);
+		intent.setAction(MusicContant.LOAD_LYRIC_OVER);
 		context.sendBroadcast(intent);
 	}
 	

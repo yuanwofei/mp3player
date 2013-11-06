@@ -11,7 +11,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.music.factory.XmlParseFactory;
-import com.music.factory.model.Mp3Info;
+import com.music.mp3player.Music;
 import com.music.utils.FileUtils;
 
 
@@ -21,7 +21,7 @@ public class Mp3InfoXmlParse extends AbstractParse {
 	}
 
 	@Override
-	public void parseXml(InputStream xmlContent, Mp3Info mp3Info) {
+	public void parseXml(InputStream xmlContent, Music mp3Info) {
 		//如何xmlContent为空就返回
 		if(xmlContent == null) {
 			return ;

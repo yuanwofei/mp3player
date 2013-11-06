@@ -14,5 +14,5 @@
 	    android:stretchMode="columnWidth"  
 	    android:gravity="center"
     	>  	        
-    </GridView>   	
+    </GridView>  	
 </ViewFlipper>

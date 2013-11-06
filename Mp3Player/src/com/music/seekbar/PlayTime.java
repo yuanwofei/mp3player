@@ -1,6 +1,6 @@
 package com.music.seekbar;
 
-import com.music.constant.Music;
+import com.music.constant.MusicContant;
 
 import android.content.Context;
 import android.content.Intent;
@@ -39,7 +39,7 @@ public class PlayTime {
 	
 	private void updateSeekBar(int currentPosition){
 		Intent intent = new Intent();
-		intent.setAction(Music.UPDATE_UI_ACTION);
+		intent.setAction(MusicContant.UPDATE_UI_ACTION);
 		intent.setFlags(0x16);
 		intent.putExtra("processRate", (float)currentPosition / player.getDuration());
 		intent.putExtra("currentMusicTime", timeConvert(currentPosition / 1000));

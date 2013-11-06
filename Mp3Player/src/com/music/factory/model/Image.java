@@ -2,14 +2,17 @@ package com.music.factory.model;
 
 import java.io.Serializable;
 
-public class ImageInfo implements Serializable{
+public class Image implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	String picUrl;
-	int width;
-	int heigth;	
 	
-	public ImageInfo() {
+	private String picUrl;
+	
+	private int width;
+	
+	private int heigth;	
+	
+	public Image() {
 		super();
 	}
 	

@@ -2,10 +2,10 @@ package com.music.lyric;
 
 import java.util.Vector;
 
-import com.music.constant.Music;
+import com.music.constant.MusicContant;
 import com.music.constant.MusicPlayer;
-import com.music.factory.model.Mp3Info;
 import com.music.mp3player.MainActivity;
+import com.music.mp3player.Music;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,11 +18,11 @@ public class LyricUpdate {
 	
 	private Handler lyricUpdateHandler = new Handler();;
 	private LyricUpdateThread lyricUpdateThread = new LyricUpdateThread();
-	private Mp3Info mp3Info = null;
+	private Music mp3Info = null;
 	private Vector<LyricInfo> lyricInfos = null;
 	private Context context = null;
 		
-	public LyricUpdate(Mp3Info mp3Info, Context context, Vector<LyricInfo> lyricInfos) {
+	public LyricUpdate(Music mp3Info, Context context, Vector<LyricInfo> lyricInfos) {
 		this.mp3Info = mp3Info;
 		this.context = context;
 		this.lyricInfos = lyricInfos;
@@ -58,7 +58,7 @@ public class LyricUpdate {
 		/**发送广播以更新歌词*/ 
 		private void sendLyricBroadcast(String lyricMsg, Context context) {
 			Intent intent = new Intent();
-			intent.setAction(Music.LRC_MESSAGE_ACTION);
+			intent.setAction(MusicContant.LRC_MESSAGE_ACTION);
 			intent.putExtra("lyricMsg", lyricMsg);
 			context.sendBroadcast(intent);
 		}

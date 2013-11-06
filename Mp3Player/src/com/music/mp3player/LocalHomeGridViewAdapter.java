@@ -27,22 +27,18 @@ public class LocalHomeGridViewAdapter extends BaseAdapter{
 		this.titleStateId = titleStateId;
 	}
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return imageId.length;
 	}
 
 	public Object getItem(int position) {
-		// TODO Auto-generated method stub
 		return imageId[position];
 	}
 
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
 		return position;
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
 		if(convertView == null) {
 			convertView = inflater.inflate(R.layout.local_home_grid_item, null);  
 		}

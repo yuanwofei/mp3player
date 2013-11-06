@@ -28,7 +28,7 @@ import org.apache.http.protocol.HTTP;
 
 import android.os.Bundle;
 
-import com.music.factory.model.Mp3Info;
+import com.music.mp3player.Music;
 
 public abstract class AbstractHttpApi implements HttpApi{
 	
@@ -108,5 +108,5 @@ public abstract class AbstractHttpApi implements HttpApi{
 	}
 	public abstract List<NameValuePair> getNameValuePair(Bundle bundle);
 	
-	public abstract ArrayList<Mp3Info> execute(Bundle bundle,Mp3Info mp3Info);
+	public abstract ArrayList<Music> execute(Bundle bundle,Music mp3Info);
 }

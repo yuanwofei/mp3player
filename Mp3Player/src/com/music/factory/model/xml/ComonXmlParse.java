@@ -14,7 +14,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.music.factory.XmlParseFactory;
-import com.music.factory.model.Mp3Info;
+import com.music.mp3player.Music;
 
 
 public class ComonXmlParse extends AbstractParse {
@@ -23,14 +23,14 @@ public class ComonXmlParse extends AbstractParse {
 	}
 
 	@Override
-	public ArrayList<Mp3Info> parseXML(InputStream xmlContent) {
+	public ArrayList<Music> parseXML(InputStream xmlContent) {
 		//如何xmlContent为空就返回
 		if(xmlContent == null) {
 			return null;
 		}		
 		//使用DOM（文档对象模型）来解析XML文件
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		ArrayList<Mp3Info> mp3Infos = new ArrayList<Mp3Info>();
+		ArrayList<Music> mp3Infos = new ArrayList<Music>();
 		try {			
 			Document doc = factory.newDocumentBuilder().parse(xmlContent);
 			NodeList songNodes = doc.getElementsByTagName("song");		
@@ -39,7 +39,7 @@ public class ComonXmlParse extends AbstractParse {
 			String mp3Sum = mp3SumNodes.item(0).getFirstChild().getNodeValue();
 			
 			for (int i = 0; i < songNodes.getLength(); i++) {					
-				Mp3Info mp3Info = new Mp3Info();
+				Music mp3Info = new Music();
 				mp3Info.setMp3Sum(mp3Sum);
 				Node parentNode = songNodes.item(i);
 				NodeList childNodes = parentNode.getChildNodes();

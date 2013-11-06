@@ -17,10 +17,10 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.music.constant.Music;
+import com.music.constant.MusicContant;
 import com.music.download.HttpDownloader;
-import com.music.factory.model.ImageInfo;
-import com.music.factory.model.Mp3Info;
+import com.music.factory.model.Image;
+import com.music.mp3player.Music;
 import com.music.utils.FileUtils;
 import com.music.utils.Network;
 
@@ -32,7 +32,7 @@ import android.widget.Toast;
 
 public class LoadImageThread extends Thread {
 	
-	private Mp3Info mp3Info = null;	
+	private Music mMusic = null;	
 	private Bitmap sourceBitmap = null;
 	private Bitmap bigBitmap = null;
 	private Bitmap miniBitmap = null;
@@ -43,8 +43,8 @@ public class LoadImageThread extends Thread {
 	private final static int HEIGHT = 480;
 	private final static float SCREEN_RATIO = 1.5f;
 
-	public LoadImageThread(Mp3Info mp3Info, Context context, boolean isLoadNextImg) {
-		this.mp3Info = mp3Info;
+	public LoadImageThread(Music music, Context context, boolean isLoadNextImg) {
+		this.mMusic = music;
 		this.context = context;
 		this.isLoadNextImg = isLoadNextImg;
 		this.picHandle = new BitmapHandle(context);
@@ -56,14 +56,14 @@ public class LoadImageThread extends Thread {
 			FileOutputStream file = null;
 			String name = null;
 			try {
-				if(mp3Info.getSingerName() != null && !mp3Info.getSingerName().equals("<unknown>")) {
-					name = mp3Info.getSingerName();
+				if(mMusic.getSingerName() != null && !mMusic.getSingerName().equals("<unknown>")) {
+					name = mMusic.getSingerName();
 				} else {
-					name = mp3Info.getMp3SimpleName();
+					name = mMusic.getMp3SimpleName();
 				}
 				file = new FileOutputStream(FileUtils.IMAGESDIR + name + FileUtils.IMAGEEXTENSION);								
 				sourceBitmap.compress(Bitmap.CompressFormat.JPEG, 90, file);
-				System.out.println("保存歌手图片成功:" + mp3Info.getSingerName());
+				System.out.println("保存歌手图片成功:" + mMusic.getSingerName());
 				file.flush();
 				file.close();
 			} catch (FileNotFoundException e) {
@@ -74,84 +74,97 @@ public class LoadImageThread extends Thread {
 		}		
 	}	
 	
-	private String getOnlinePicData(int pageNum, String keyWord) 
+	private String getOnlinePicData(int width, int pageNum, String keyWord) 
 			throws ClientProtocolException, IOException {		
 		if(keyWord.contains(" ")) {
 			keyWord = keyWord.replace(" ", "-");
 		}
 		HttpClient hClient = new DefaultHttpClient();
 	    HttpClientParams.setCookiePolicy(hClient.getParams(), CookiePolicy.BROWSER_COMPATIBILITY);
-	    HttpGet hGet = new HttpGet("http://image.baidu.com/i?" +
-	    		"tn=baiduimagejson&ie=utf-8&rn=60&pn=" + pageNum + "&word=" + keyWord); 
-	     		 
+	    /*String url = "http://image.baidu.com/i?" +
+	    		"tn=baiduimagejson&width=" + width +  "&height=" + (int)(width*SCREEN_RATIO)
+	    	  + "&ie=utf-8&rn=60&pn=" + pageNum + "&word=" + keyWord;*/
+	    String url2 = "http://image.baidu.com/i?" +
+	    		"tn=baiduimagejson&ie=utf-8&rn=60&pn=" + pageNum + "&word=" + keyWord;
+	    System.out.println(url2);
+	    HttpGet hGet = new HttpGet(url2); 	    
 	    ResponseHandler<String> rHandler = new BasicResponseHandler();
 		return hClient.execute(hGet, rHandler);	
 	} 
 	
-	private List<ImageInfo> searchPic(int pageNum, String keyWord) {
-		List<ImageInfo> imageInfos = new ArrayList<ImageInfo>();
-		try{  	     	     	     
-		    String data = getOnlinePicData(pageNum, keyWord);
-		    //System.out.println(data);
-			JSONObject jo = new JSONObject(data); 	     
-	        JSONArray jsonArray = jo.optJSONArray("data");
-	        
-	        for (int i = 0; i < jsonArray.length(); ++i) {        	        	 
-	       	
-	        	int width = jsonArray.getJSONObject(i).getInt("width");
-	        	int height = jsonArray.getJSONObject(i).getInt("height");
-	        	
-	        	if(width >= WIDTH && height >= HEIGHT) {
-	        		if((float)height/width >= SCREEN_RATIO) {
-		        		ImageInfo imageInfo = new ImageInfo();
-		        		imageInfo.setPicUrl(jsonArray.getJSONObject(i).getString("objURL"));
-		        		imageInfos.add(imageInfo);
-	        		}		        		 
-	        	}	        	                	 
-	        }	         			    
-		 } catch (Exception e) {
-			 e.printStackTrace();
-		 }  
-		 return imageInfos;		
+	private List<Image> searchPic(int width, int pageNum, String keyWord) {
+		List<Image> images = new ArrayList<Image>();			     	     	      
+		JSONArray jsonArray = null;
+		try {
+			 String data = getOnlinePicData(width, pageNum, keyWord);
+			 System.out.println(data);
+			 JSONObject jo = new JSONObject(data);
+			 jsonArray = jo.optJSONArray("data");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}        
+        
+        for (int i = 0; i < jsonArray.length() - 1; ++i) {        	        	 
+        	try {
+				int mWidth = jsonArray.getJSONObject(i).getInt("width");
+				int mHeight = jsonArray.getJSONObject(i).getInt("height");
+        	
+				if(mWidth >= WIDTH && mHeight >= HEIGHT) {
+					if((float)mHeight/mWidth >= SCREEN_RATIO) {
+						Image imageInfo = new Image();
+						imageInfo.setPicUrl(jsonArray.getJSONObject(i).getString("objURL"));
+						images.add(imageInfo);
+					}		        		 
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}    	    	                	 
+        }	         			    
+		return images;		
 	}
 	
 	private void loadSingerImage() {							
-		File picFile = new File(mp3Info.getSingerBigImageURL());		
+		File picFile = new File(mMusic.getSingerBigImageURL());		
 		if(!isLoadNextImg && picFile.exists() && picFile.length() > 0) { //本地图片							
-			sourceBitmap = BitmapFactory.decodeFile(mp3Info.getSingerBigImageURL(), setBitmapFactoryOptions());					
+			sourceBitmap = BitmapFactory.decodeFile(mMusic.getSingerBigImageURL(), setBitmapFactoryOptions());					
 		} else {//在线图片
 			//删掉SD卡中大小为0的图片（有错图片）
 			if(picFile.length() == 0) {
 				picFile.delete(); 
 			}
 			if(Network.isAccessNetwork(context)) {
-				List<ImageInfo> imageInfos = null;
+				List<Image> images = null;
 				int pageNum = -59;
+				int curWidth = WIDTH - 50;
 				System.out.println("正在搜索歌手图片......");
-				if(mp3Info.getSingerName() != null && !mp3Info.getSingerName().
-						equals("") && !mp3Info.getSingerName().equals("<unknown>")) 
+				if(mMusic.getSingerName() != null && !mMusic.getSingerName().
+						equals("") && !mMusic.getSingerName().equals("<unknown>")) 
 					//以歌手为关键词搜索图片					
 					do {
-						pageNum += 60;							
+						pageNum += 60;
+						curWidth += 50;
 						if(pageNum > 600) {
 							sourceBitmap = null;							
 							System.out.println("找不到歌手图片");	
 							break;
 						}
-						imageInfos = searchPic(pageNum, mp3Info.getSingerName());						
-					} while(!isFindPic(imageInfos));										
+						images = searchPic(curWidth, pageNum, mMusic.getSingerName());						
+					} while(!isFindPic(images));										
 				else {
 					//当歌手名为空时，以歌名为关键词搜索图片
-					//以歌手为关键词搜索图片			
+					//以歌手为关键词搜索图片
+					pageNum = -59;
+					curWidth = WIDTH - 50;
 					do {
 						pageNum += 60;
+						curWidth += 50;
 						if(pageNum > 600) {						
 							sourceBitmap = null;
 							System.out.println("找不到歌手图片");
 							break;
 						}
-						imageInfos = searchPic(pageNum, mp3Info.getMp3SimpleName());
-					} while(!isFindPic(imageInfos));									
+						images = searchPic(WIDTH, pageNum, mMusic.getMp3SimpleName());
+					} while(!isFindPic(images));									
 				}				
 			} else {
 				Toast.makeText(context, "当前还没联网", Toast.LENGTH_SHORT).show();
@@ -161,13 +174,13 @@ public class LoadImageThread extends Thread {
 		miniBitmap = picHandle.clipMiniPic(sourceBitmap);		
 	}
 	
-	private boolean isFindPic(List<ImageInfo> imageInfos) {
+	private boolean isFindPic(List<Image> images) {
 		boolean flag = false;
-		System.out.println("imageInfos :" + imageInfos.size() + "\n" + imageInfos);
-		if(imageInfos.size() > 0) {	
+		//System.out.println("images :" + images.size() + "\n" + images);
+		if(images.size() > 0) {	
 			
-			int index = (int) (Math.random()*(imageInfos.size() - 1));
-			String picUrl = imageInfos.get(index).getPicUrl();			
+			int index = (int) (Math.random()*(images.size() - 1));
+			String picUrl = images.get(index).getPicUrl();			
 			sourceBitmap = BitmapFactory.decodeStream(
 					new HttpDownloader().getInputStreamFromUrl(picUrl), null, setBitmapFactoryOptions());																
 			if(sourceBitmap != null) {
@@ -189,7 +202,7 @@ public class LoadImageThread extends Thread {
 	private void sendLoadImageOverBroadcast() {
 		Intent intent = new Intent();
 		intent.setFlags(0x15);
-		intent.setAction(Music.UPDATE_UI_ACTION);		
+		intent.setAction(MusicContant.UPDATE_UI_ACTION);		
 		context.sendBroadcast(intent);
 	}
 	
